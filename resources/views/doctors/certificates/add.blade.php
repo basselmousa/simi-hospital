@@ -1,8 +1,10 @@
-<div class="modal fade" id="add-certificate" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel-3" aria-hidden="true">
-    <div class="modal-dialog modal-sm" role="document">
+<div class="modal fade" id="add-certificate" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog" role="document">
+
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel-3">Add Certificate </h5>
+                <h5 class="modal-title" id="exampleModalLabel">Add Certificate </h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -23,14 +25,14 @@
                     <div class="form-group">
                         <label for="exampleInputUsername1">Certificate Image</label>
                         <input type="file" name="image" class="file-upload-default" >
-                        <div class="input-group col-xs-12">
-                            <input type="text" class="form-control file-upload-info" disabled=""
-                                   placeholder="Upload Profile Image">
-                            <span class="input-group-append">
-                                  <button class="file-upload-browse btn btn-primary"
-                                          type="button">Upload</button>
-                                </span>
-                        </div>
+{{--                        <div class="input-group col-xs-12">--}}
+{{--                            <input type="text" class="form-control file-upload-info" disabled=""--}}
+{{--                                   placeholder="Upload Profile Image">--}}
+{{--                            <span class="input-group-append">--}}
+{{--                                  <button class="file-upload-browse btn btn-primary"--}}
+{{--                                          type="button">Upload</button>--}}
+{{--                                </span>--}}
+{{--                        </div>--}}
                         @error('image')
                         <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>

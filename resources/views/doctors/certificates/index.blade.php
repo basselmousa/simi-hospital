@@ -54,9 +54,10 @@
                                     </td>
 
                                 </tr>
-                                @include('doctors.certificates.view',['id' => $certificate->id, 'image' => $certificate->image])
-
-                            @endforeach
+                                       @section("modal")
+                                           @include('doctors.certificates.view',['id' => $certificate->id, 'image' => $certificate->image])
+                                       @endsection
+                                   @endforeach
 
                             </tbody>
                         </table>
@@ -66,15 +67,17 @@
         </div>
     </div>
 
-    @include('doctors.certificates.add')
+
 
 
 @endsection
-
+@section("modal")
+    @include('doctors.certificates.add')
+@endsection
 @section('js')
-    <script src="{{asset('admin/js/file-upload.js')}}"></script>
-    <script src="{{asset('admin/js/toastDemo.js')}}"></script>
-    <script src="{{asset('admin/js/formpickers.js')}}"></script>
+{{--    <script src="{{asset('admin/js/file-upload.js')}}"></script>--}}
+{{--    <script src="{{asset('admin/js/toastDemo.js')}}"></script>--}}
+{{--    <script src="{{asset('admin/js/formpickers.js')}}"></script>--}}
     <script>
         showInfoToast = function(message) {
             'use strict';

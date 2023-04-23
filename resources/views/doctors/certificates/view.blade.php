@@ -8,7 +8,7 @@
                 </button>
             </div>
             <div class="modal-body">
-                <img src="{{ asset('storage/'.$image) }}" alt="cert">
+                <img width="500" src="{{ asset('storage/'.$image) }}" alt="cert">
              </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-light" data-dismiss="modal">Cancel</button>
