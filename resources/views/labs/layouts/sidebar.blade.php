@@ -37,8 +37,8 @@
                 <br>
                 <br>
                 <li>
-                    <a href="{{ route('dashboard.pharmacy.drugs.index') }}" class="mm-active">
-                        <i class="metismenu-icon pe-7s-graph"></i>Medical
+                    <a href="{{ route('dashboard.labs.examination.index') }}" class="mm-active">
+                        <i class="metismenu-icon pe-7s-graph"></i>Examinations
                     </a>
                 </li>
 
@@ -48,13 +48,13 @@
                     </a>
                     <ul>
                         <li>
-                            <a href="{{ route('dashboard.pharmacy.prescription.pending') }}" class="mm-active">
-                                <i class="metismenu-icon"></i>Pending Requests
+                            <a href="{{ route('dashboard.labs.examination.pending') }}" class="mm-active">
+                                <i class="metismenu-icon"></i>Pending Examinations
                             </a>
                         </li>
                         <li>
-                            <a href="{{ route('dashboard.pharmacy.prescription.approved') }}">
-                                <i class="metismenu-icon"></i>Approved Requests
+                            <a href="{{ route('dashboard.labs.examination.approved') }}">
+                                <i class="metismenu-icon"></i>Approved Examinations
                             </a>
                         </li>
                     </ul>

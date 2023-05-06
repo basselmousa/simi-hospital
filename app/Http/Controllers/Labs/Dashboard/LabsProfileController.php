@@ -11,6 +11,7 @@ class LabsProfileController extends Controller
     //
     public function index()
     {
+//        dd( auth("lab")->user());
         $pharmacy = auth("lab")->user();
         return view("labs.auth.profile",compact("pharmacy"));
     }

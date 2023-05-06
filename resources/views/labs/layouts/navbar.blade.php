@@ -50,7 +50,7 @@
                                 <a data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
                                    class="p-0 btn">
                                     <img width="42" class="rounded-circle"
-                                         src="{{asset(isset(auth("lab")->user()->logo)? "storage/".auth("pharmacy")->user()->logo :  "admin/assets/images/avatars/1.jpg")}}"
+                                         src="{{asset(isset(auth("lab")->user()->logo)? "storage/".auth("lab")->user()->logo :  "admin/assets/images/avatars/1.jpg")}}"
                                          alt="">
                                     <i class="fa fa-angle-down ml-2 opacity-8"></i>
                                 </a>

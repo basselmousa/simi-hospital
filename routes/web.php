@@ -182,11 +182,16 @@ Route::group(["prefix" => "dashboard/labs", "as" => "dashboard.labs."], function
         Route::get("profile", [\App\Http\Controllers\Labs\Dashboard\LabsProfileController::class, "index"])->name("profile");
         Route::put("profile", [\App\Http\Controllers\Labs\Dashboard\LabsProfileController::class, "updateProfile"])->name("updateProfile");
     });
-//    Route::group(["prefix" => "prescription", "as" => "prescription."], function () {
-//        Route::get("pending", [\App\Http\Controllers\Pharmacy\Dashboard\PharmacyPrescriptionController::class, "pending"])->name("pending");
-//        Route::get("approved", [\App\Http\Controllers\Pharmacy\Dashboard\PharmacyPrescriptionController::class, "approved"])->name("approved");
-//    });
-//    Route::group(["prefix" => "drugs", "as" => "drugs."], function () {
-//        Route::get("", [\App\Http\Controllers\Pharmacy\Dashboard\PharmacyDrugsController::class, "index"])->name("index");
-//    });
+
+    Route::group(["prefix" => "examinationsRequests", "as" => "examination."], function () {
+        Route::get("pending", [\App\Http\Controllers\Lab\Dashboard\LabExaminationsController::class, "pending"])->name("pending");
+        Route::get("approved", [\App\Http\Controllers\Lab\Dashboard\LabExaminationsController::class, "approved"])->name("approved");
+    });
+
+    Route::group(["prefix" => "examinations", "as" => "examination."], function () {
+        Route::get("/", [\App\Http\Controllers\Lab\Dashboard\LabExaminationsController::class, "index"])->name("index");
+        Route::post("/", [\App\Http\Controllers\Lab\Dashboard\LabExaminationsController::class, "addExamination"])->name("add");
+        Route::delete("/", [\App\Http\Controllers\Lab\Dashboard\LabExaminationsController::class, "deleteExamination"])->name("delete");
+    });
+
 });
