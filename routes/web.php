@@ -144,3 +144,49 @@ Route::group(['prefix' => 'secretary', 'as' => 'secretary.'], function () {
 
 
 });
+
+Route::group(['prefix' => 'pharmacy', 'as' => 'pharmacy.'], function () {
+    Route::get('login', [\App\Http\Controllers\Pharmacy\Auth\AuthenticatePharmacyController::class, 'showLoginForm'])->name('showLoginForm');
+    Route::post('login', [\App\Http\Controllers\Pharmacy\Auth\AuthenticatePharmacyController::class, 'submitLoginForm'])->name('submitLoginForm');
+    Route::get('register', [\App\Http\Controllers\Pharmacy\Auth\AuthenticatePharmacyController::class, 'showRegisterForm'])->name('showRegisterForm');
+    Route::post('register', [\App\Http\Controllers\Pharmacy\Auth\AuthenticatePharmacyController::class, 'submitRegisterForm'])->name('submitRegisterForm');
+    Route::post('logout', [\App\Http\Controllers\Pharmacy\Auth\AuthenticatePharmacyController::class, 'logout'])->name('logout');
+
+});
+Route::group(["prefix" => "dashboard/pharmacy", "as" => "dashboard.pharmacy."], function () {
+
+    Route::group(["prefix" => "profile", "as" => "profile."], function () {
+        Route::get("profile", [\App\Http\Controllers\Pharmacy\Dashboard\PharmacyProfileController::class, "index"])->name("profile");
+        Route::put("profile", [\App\Http\Controllers\Pharmacy\Dashboard\PharmacyProfileController::class, "updateProfile"])->name("updateProfile");
+    });
+    Route::group(["prefix" => "prescription", "as" => "prescription."], function () {
+        Route::get("pending", [\App\Http\Controllers\Pharmacy\Dashboard\PharmacyPrescriptionController::class, "pending"])->name("pending");
+        Route::get("approved", [\App\Http\Controllers\Pharmacy\Dashboard\PharmacyPrescriptionController::class, "approved"])->name("approved");
+    });
+    Route::group(["prefix" => "drugs", "as" => "drugs."], function () {
+        Route::get("", [\App\Http\Controllers\Pharmacy\Dashboard\PharmacyDrugsController::class, "index"])->name("index");
+    });
+});
+Route::group(['prefix' => 'labs', 'as' => 'labs.'], function () {
+    Route::get('login', [\App\Http\Controllers\Labs\Auth\AuithenticateLabsController::class, 'showLoginForm'])->name('showLoginForm');
+    Route::post('login', [\App\Http\Controllers\Labs\Auth\AuithenticateLabsController::class, 'submitLoginForm'])->name('submitLoginForm');
+    Route::get('register', [\App\Http\Controllers\Labs\Auth\AuithenticateLabsController::class, 'showRegisterForm'])->name('showRegisterForm');
+    Route::post('register', [\App\Http\Controllers\Labs\Auth\AuithenticateLabsController::class, 'submitRegisterForm'])->name('submitRegisterForm');
+    Route::post('logout', [\App\Http\Controllers\Labs\Auth\AuithenticateLabsController::class, 'logout'])->name('logout');
+
+});
+
+Route::group(["prefix" => "dashboard/labs", "as" => "dashboard.labs."], function () {
+
+    Route::group(["prefix" => "profile", "as" => "profile."], function () {
+        Route::get("profile", [\App\Http\Controllers\Labs\Dashboard\LabsProfileController::class, "index"])->name("profile");
+        Route::put("profile", [\App\Http\Controllers\Labs\Dashboard\LabsProfileController::class, "updateProfile"])->name("updateProfile");
+    });
+//    Route::group(["prefix" => "prescription", "as" => "prescription."], function () {
+//        Route::get("pending", [\App\Http\Controllers\Pharmacy\Dashboard\PharmacyPrescriptionController::class, "pending"])->name("pending");
+//        Route::get("approved", [\App\Http\Controllers\Pharmacy\Dashboard\PharmacyPrescriptionController::class, "approved"])->name("approved");
+//    });
+//    Route::group(["prefix" => "drugs", "as" => "drugs."], function () {
+//        Route::get("", [\App\Http\Controllers\Pharmacy\Dashboard\PharmacyDrugsController::class, "index"])->name("index");
+//    });
+});

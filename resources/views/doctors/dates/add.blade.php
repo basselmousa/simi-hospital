@@ -30,7 +30,7 @@
                         <label for="exampleInputUsername1">Day</label>
                        <div class="row">
                          <div class="col-12">
-                             <select name="day[]" class="js-example-basic-multiple w-100 select2-hidden-accessible"  multiple="" tabindex="-1" aria-hidden="true">
+                             <select name="day[]" multiple="multiple" class="multiselect-dropdown form-control">
                                  @foreach(\App\Http\AppointmentConfigs::$days as $day)
 
                                      <option value="{{ $day }}">{{ $day }}</option>
@@ -50,7 +50,7 @@
                         <label for="exampleInputUsername1">Start time</label>
                         <div class="input-group date" id="timepicker-example" data-target-input="nearest">
                             <div class="input-group" data-target="#timepicker-example" data-toggle="datetimepicker">
-                                <input type="text" name="start_time" class="form-control datetimepicker-input" data-target="#timepicker-example">
+                                <input type="time" name="start_time" class="form-control datetimepicker-input" data-target="#timepicker-example">
                                 <div class="input-group-addon input-group-append"><i class="far fa-clock input-group-text"></i></div>
                             </div>
                         </div>
@@ -64,7 +64,7 @@
                         <label for="exampleInputUsername1">End time</label>
                         <div class="input-group date" id="timepicker-example-1" data-target-input="nearest">
                             <div class="input-group" data-target="#timepicker-example-1" data-toggle="datetimepicker">
-                                <input type="text" name="end_time" class="form-control datetimepicker-input" data-target="#timepicker-example-1">
+                                <input type="time" name="end_time" class="form-control datetimepicker-input" data-target="#timepicker-example-1">
                                 <div class="input-group-addon input-group-append"><i class="far fa-clock input-group-text"></i></div>
                             </div>
                         </div>

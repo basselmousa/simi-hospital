@@ -4,8 +4,13 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Foundation\Auth\User as Authenticatable;
 
-class Pharmacy extends Model
+class Pharmacy extends Authenticatable
 {
     use HasFactory;
+
+    protected $guarded = [];
+
+
 }

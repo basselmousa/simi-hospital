@@ -38,17 +38,17 @@
                                 </h5>
                                 <div class="divider row"></div>
                                 <div class="form-row">
-                                    <form action="{{ route('doctors.submitRegisterForm') }}" method="post" class="pt-3"
+                                    <form action="{{ route('pharmacy.submitRegisterForm') }}" method="post" class="pt-3"
                                           enctype="multipart/form-data">
                                         @csrf
                                         <div class="row">
                                             <div class="col-md-6">
                                                 <div class="form-group">
-                                                    <input type="text" name="firstname"
+                                                    <input type="text" name="name"
                                                            class="form-control form-control"
-                                                           id="exampleInputUsername1" placeholder="First Name"
-                                                           value="{{ old('firstname') }}">
-                                                    @error('firstname')
+                                                           id="exampleInputUsername1" placeholder="Full Name"
+                                                           value="{{ old('name') }}">
+                                                    @error('name')
                                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
@@ -57,13 +57,13 @@
                                             </div>
                                             <div class="col-md-6">
                                                 <div class="form-group">
-                                                    <input type="text" name="fathername"
+                                                    <input type="text" name="username"
                                                            class="form-control form-control"
-                                                           id="exampleInputUsername1" placeholder="Father Name"
-                                                           value="{{ old('fathername') }}">
+                                                           id="exampleInputUsername1" placeholder="User Name"
+                                                           value="{{ old('username') }}">
 
 
-                                                    @error('fathername')
+                                                    @error('username')
                                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
@@ -71,19 +71,6 @@
                                                 </div>
                                             </div>
 
-                                            <div class="col-md-6">
-                                                <div class="form-group">
-                                                    <input type="text" name="familyname"
-                                                           class="form-control form-control"
-                                                           id="exampleInputUsername1" placeholder="Family Name"
-                                                           value="{{ old('familyname') }}">
-                                                    @error('familyname')
-                                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                                    @enderror
-                                                </div>
-                                            </div>
                                             <div class="col-md-6">
                                                 <div class="form-group">
                                                     <input type="email" name="email" class="form-control form-control"
@@ -150,28 +137,7 @@
                                                     @enderror
                                                 </div>
                                             </div>
-                                            <div class="col-md-6">
-                                                <div class="form-group">
-                                                    <select class="form-control form-control-lg" name="gender"
-                                                            id="exampleFormControlSelect2">
-                                                        <option disabled selected>Gender</option>
-                                                        <option
-                                                            value="male" {{ old('gender') == 'male' ? 'selected' : '' }} >
-                                                            Male
-                                                        </option>
-                                                        <option
-                                                            value="female" {{ old('gender') == 'female' ? 'selected' : '' }}>
-                                                            Female
-                                                        </option>
 
-                                                    </select>
-                                                    @error('gender')
-                                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                                    @enderror
-                                                </div>
-                                            </div>
                                             <div class="col-md-6">
                                                 <div class="form-group">
                                                     <input type="text" name="building_number"
@@ -201,10 +167,44 @@
                                                 </div>
                                             </div>
                                             <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <input type="text" name="facility_no"
+                                                           class="form-control form-control"
+                                                           id="exampleInputUsername1" placeholder="Facility Number"
+                                                           value="{{ old('facility_no') }}">
+
+
+                                                    @error('facility_no')
+                                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                                    @enderror
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <input type="text" name="address"
+                                                           class="form-control form-control"
+                                                           id="exampleInputUsername1" placeholder="Address"
+                                                           value="{{ old('address') }}">
+
+
+                                                    @error('address')
+                                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                                    @enderror
+                                                </div>
+                                            </div>
+
+
+
+                                            <div class="col-md-6">
 
                                                 <div class="form-group">
 
-                                                    <input type="file" name="image" class="file-upload-default">
+                                                    <input type="file" name="logo" class="file-upload-default">
 {{--                                                    <div class="input-group col-xs-12">--}}
 {{--                                                        <input type="text" class="form-control file-upload-info"--}}
 {{--                                                               disabled=""--}}
@@ -214,7 +214,7 @@
 {{--                                                      type="button">Upload</button>--}}
 {{--                                            </span>--}}
 {{--                                                    </div>--}}
-                                                    @error('image')
+                                                    @error('logo')
                                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
@@ -231,7 +231,7 @@
                                             </button>
                                         </div>
                                         <div class="text-center mt-4 font-weight-light">
-                                            Already have an account? <a href="{{ route('doctors.showLoginForm') }}"
+                                            Already have an account? <a href="{{ route('pharmacy.showLoginForm') }}"
                                                                         class="text-primary">Login</a>
                                         </div>
                                     </form>

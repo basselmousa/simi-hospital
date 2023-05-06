@@ -75,9 +75,12 @@
         </div>
     </div>
 
+
+
+@endsection
+@section("modal")
+
     @include('doctors.dates.add')
-
-
 @endsection
 
 @section('js')

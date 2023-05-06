@@ -54,7 +54,7 @@
                                     </td>
 
                                 </tr>
-                                       @section("modal")
+                                       @section("modal-view")
                                            @include('doctors.certificates.view',['id' => $certificate->id, 'image' => $certificate->image])
                                        @endsection
                                    @endforeach

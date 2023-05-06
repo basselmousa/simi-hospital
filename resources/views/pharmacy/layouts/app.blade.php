@@ -42,10 +42,10 @@
                     </button>
                 </div>
             </div>
-            @include('doctors.layouts.navbar')
+            @include('pharmacy.layouts.navbar')
         </div>
         <div class="app-main">
-            @include('doctors.layouts.sidebar')
+            @include('pharmacy.layouts.sidebar')
 
             <div class="app-main__outer">
                 <div class="app-main__inner">

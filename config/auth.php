@@ -48,6 +48,14 @@ return [
             'driver' => 'session',
             'provider' => 'secretaries',
         ],
+        'pharmacy' => [
+            'driver' => 'session',
+            'provider' => 'pharmacies',
+        ],
+        'lab' => [
+            'driver' => 'session',
+            'provider' => 'labs',
+        ],
     ],
 
     /*
@@ -79,6 +87,14 @@ return [
         'secretaries' => [
             'driver' => 'eloquent',
             'model' => App\Models\Secretary::class,
+        ],
+        'pharmacies' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\Pharmacy::class,
+        ],
+        'labs' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\MedicalLab::class,
         ],
 
         // 'users' => [
