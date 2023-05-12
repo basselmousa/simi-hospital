@@ -2,8 +2,10 @@
 
 namespace Database\Seeders;
 
+use App\Models\Admin;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Hash;
 
 class DatabaseSeeder extends Seeder
 {
@@ -16,9 +18,13 @@ class DatabaseSeeder extends Seeder
     {
         // \App\Models\User::factory(10)->create();
 
-        $this->call([
-            DoctorSeeder::class,
-            UserSeeder::class,
+        Admin::create([
+            "username" => "superadmin",
+            "password" => Hash::make("123456789")
         ]);
+//        $this->call([
+//            DoctorSeeder::class,
+//            UserSeeder::class,
+//        ]);
     }
 }

@@ -36,11 +36,7 @@
 
                 <br>
                 <br>
-                <li>
-                    <a href="{{ route('dashboard.doctor.reports.index') }}" class="mm-active">
-                        <i class="metismenu-icon pe-7s-graph"></i>Reports
-                    </a>
-                </li>
+
 
                 <li>
                     <a href="#">
@@ -93,6 +89,11 @@
                             </a>
                         </li>
                     </ul>
+                </li>
+                <li>
+                    <a href="{{ route('dashboard.doctor.reports.index') }}" class="mm-active">
+                        <i class="metismenu-icon pe-7s-graph"></i>Reports
+                    </a>
                 </li>
 {{--                <li>--}}
 {{--                    <a href="widgets-chart-boxes-3.html">--}}

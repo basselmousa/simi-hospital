@@ -56,6 +56,10 @@ return [
             'driver' => 'session',
             'provider' => 'labs',
         ],
+        'admin' => [
+            'driver' => 'session',
+            'provider' => 'admins',
+        ],
     ],
 
     /*
@@ -95,6 +99,10 @@ return [
         'labs' => [
             'driver' => 'eloquent',
             'model' => App\Models\MedicalLab::class,
+        ],
+        'admins' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\Admin::class,
         ],
 
         // 'users' => [

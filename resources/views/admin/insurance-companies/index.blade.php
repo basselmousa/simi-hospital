@@ -1,4 +1,4 @@
-@extends('labs.layouts.app')
+@extends('admin.layouts.app')
 @section('css')
     <style>
         .invalid-feedback{
@@ -11,51 +11,52 @@
 @endsection
 @section('content')
 
-    @if(count($examinations) ==0)
-        <div class="alert alert-warning" role="alert">
-            You don't have any Medical Examination yet. <br>
-            Before insert some Medical Examination tests <br>
-            * You will not appear in any search result <br>
-            Sorry for that.
-        </div>
-
-    @endif
-@include("helpers.alerts")
+    @include("helpers.alerts")
     <div class="col-12 grid-margin">
         <div class="card">
 
             <div class="card-body">
-                <h4 class="card-title">Medical Examinations Table</h4>
+                <h4 class="card-title">Admins Table</h4>
                 <button class="btn btn-primary" data-toggle="modal" data-target="#add-date">Add</button>
                 <div class="row">
                     <div class="table-sorter-wrapper col-lg-12 table-responsive">
                         <table id="sortable-table-1" class="table">
-                            <thead>
+                            <thead style="scroll-behavior: smooth">
                             <tr>
-
-                                <th class="sortStyle">Lab Name <i class="fa fa-angle-down"></i></th>
-                                <th class="sortStyle">Test Name <i class="fa fa-angle-down"></i></th>
-                                <th class="sortStyle">Test Price<i class="fa fa-angle-down"></i></th>
-{{--                                <th class="sortStyle">End Time<i class="fa fa-angle-down"></i></th>--}}
-{{--                                <th class="sortStyle">Price<i class="fa fa-angle-down"></i></th>--}}
-                                <th class="sortStyle">Actions<i class="fa fa-angle-down"></i></th>
-
+                                <th class="sortStyle">Name</th>
+                                <th class="sortStyle">Username</th>
+                                <th class="sortStyle">Coverage Ratio</th>
+                                <th class="sortStyle">Email</th>
+                                <th class="sortStyle">Facility Number</th>
+                                <th class="sortStyle">Country</th>
+                                <th class="sortStyle">Address</th>
+                                <th class="sortStyle">Building Number</th>
+                                <th class="sortStyle">Phone Number</th>
+                                <th class="sortStyle">Actions</th>
                             </tr>
                             </thead>
-                            <tbody>
-                            @foreach($examinations as $examination)
+                            <tbody style="scroll-behavior: smooth">
+                            @foreach($companies as $admin)
                                 <tr>
-                                    <td>{{ $examination->lab->name }}</td>
-                                    <td>{{ $examination->name }}</td>
-                                    <td>{{ $examination->price }}</td>
-{{--                                    <td>{{ $examination->end_time }}</td>--}}
-{{--                                    <td>{{ $examination->price }}</td>--}}
-                                    <td>
+                                    <td>{{ $admin->name }}</td>
+                                    <td>{{ $admin->username }}</td>
+                                    <td>{{ $admin->coverage_ratio }}</td>
+                                    <td>{{ $admin->email }}</td>
+                                    <td>{{ $admin->facility_no }}</td>
+                                    <td>{{ $admin->country }}</td>
+                                    <td>{{ $admin->address }}</td>
+                                    <td>{{ $admin->building_number }}</td>
+                                    <td>{{ $admin->phone_number }}</td>
+                                     <td>
+                                        <button class="btn btn-primary" data-toggle="modal" data-target="#edit-admin-{{$admin->id}}">Edit</button>
+                                        @section("modal-view")
+                                            @include("admin.insurance-companies.edit",["admin" => $admin])
+                                            @endsection
                                         <button class="btn btn-danger rounded-circle" onclick="event.preventDefault();
-                                            document.getElementById('delete-appoint-form-{{$examination->id}}').submit();
+                                            document.getElementById('delete-appoint-form-{{$admin->id}}').submit();
                                             "><i class="fa fa-trash"></i></button>
-                                        <form id="delete-appoint-form-{{$examination->id}}" method="post"
-                                              action="{{ route('dashboard.labs.examination.delete', $examination->id) }}"
+                                        <form id="delete-appoint-form-{{$admin->id}}" method="post"
+                                              action="{{ route('dashboard.admin.company.delete', $admin->id) }}"
                                               class="d-none">
                                             @method('DELETE')
                                             @csrf
@@ -63,7 +64,7 @@
                                     </td>
 
                                 </tr>
-{{--                                @include('doctors.certificates.view',['id' => $certificate->id, 'image' => $certificate->image])--}}
+
 
                             @endforeach
 
@@ -80,7 +81,7 @@
 @endsection
 @section("modal")
 
-    @include('labs.examinations.add')
+    @include('admin.insurance-companies.add')
 @endsection
 
 @section('js')

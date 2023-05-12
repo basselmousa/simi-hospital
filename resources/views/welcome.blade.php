@@ -40,17 +40,17 @@
 <body>
 
 <!-- ======= Top Bar ======= -->
-<div id="topbar" class="d-flex align-items-center fixed-top">
-    <div class="container d-flex justify-content-between">
+{{--<div id="topbar" class="d-flex align-items-center fixed-top">--}}
+{{--    <div class="container d-flex justify-content-between">--}}
 
-        <div class="d-none d-lg-flex social-links align-items-center">
-            <a href="#" class="twitter"><i class="bi bi-twitter"></i></a>
-            <a href="#" class="facebook"><i class="bi bi-facebook"></i></a>
-            <a href="#" class="instagram"><i class="bi bi-instagram"></i></a>
-            <a href="#" class="linkedin"><i class="bi bi-linkedin"></i></a>
-        </div>
-    </div>
-</div>
+{{--        <div class="d-none d-lg-flex social-links align-items-center">--}}
+{{--            <a href="#" class="twitter"><i class="bi bi-twitter"></i></a>--}}
+{{--            <a href="#" class="facebook"><i class="bi bi-facebook"></i></a>--}}
+{{--            <a href="#" class="instagram"><i class="bi bi-instagram"></i></a>--}}
+{{--            <a href="#" class="linkedin"><i class="bi bi-linkedin"></i></a>--}}
+{{--        </div>--}}
+{{--    </div>--}}
+{{--</div>--}}
 
 <!-- ======= Header ======= -->
 <header id="header" class="fixed-top">
@@ -63,7 +63,7 @@
         <nav id="navbar" class="navbar order-last order-lg-0">
             <ul>
                 <li><a class="nav-link scrollto active" href="#hero">Home</a></li>
-                <li><a class="nav-link scrollto" href="#about">About</a></li>
+                <li><a class="nav-link scrollto" href="#about">About Us</a></li>
 
                 <li><a class="nav-link scrollto" href="#doctors">Doctors</a></li>
 {{--                <li class="dropdown"><a href="#"><span>Drop Down</span> <i class="bi bi-chevron-down"></i></a>--}}
@@ -95,9 +95,9 @@
                 @else
                     <a href="{{ route('login') }}" class="appointment-btn scrollto">Log in</a>
 
-                    @if (Route::has('register'))
-                        <a href="{{ route('register') }}" class="appointment-btn scrollto">Register</a>
-                    @endif
+{{--                    @if (Route::has('register'))--}}
+{{--                        <a href="{{ route('register') }}" class="appointment-btn scrollto">Register</a>--}}
+{{--                    @endif--}}
                 @endauth
 
         @endif
@@ -108,10 +108,10 @@
 
 <!-- ======= Hero Section ======= -->
 <section id="hero" class="d-flex align-items-center">
-    <div class="container">
-        <h1>Welcome to Medical Clinics</h1>
-        <a href="#about" class="btn-get-started scrollto">Get Started</a>
-    </div>
+{{--    <div class="container">--}}
+{{--        <h1>Welcome to Medical Clinics</h1>--}}
+{{--        <a href="#about" class="btn-get-started scrollto">Get Started</a>--}}
+{{--    </div>--}}
 </section><!-- End Hero -->
 
 <main id="main">

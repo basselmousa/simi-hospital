@@ -191,7 +191,43 @@ Route::group(["prefix" => "dashboard/labs", "as" => "dashboard.labs."], function
     Route::group(["prefix" => "examinations", "as" => "examination."], function () {
         Route::get("/", [\App\Http\Controllers\Lab\Dashboard\LabExaminationsController::class, "index"])->name("index");
         Route::post("/", [\App\Http\Controllers\Lab\Dashboard\LabExaminationsController::class, "addExamination"])->name("add");
-        Route::delete("/", [\App\Http\Controllers\Lab\Dashboard\LabExaminationsController::class, "deleteExamination"])->name("delete");
+        Route::delete("/{examination}", [\App\Http\Controllers\Lab\Dashboard\LabExaminationsController::class, "deleteExamination"])->name("delete");
     });
 
+});
+
+Route::group(['prefix' => 'admins', 'as' => 'admins.'], function () {
+    Route::get('login', [\App\Http\Controllers\Admin\Auth\AuthenticateAdminController::class, 'showLoginForm'])->name('showLoginForm');
+    Route::post('login', [\App\Http\Controllers\Admin\Auth\AuthenticateAdminController::class, 'submitLoginForm'])->name('submitLoginForm');
+    Route::post('logout', [\App\Http\Controllers\Admin\Auth\AuthenticateAdminController::class, 'logout'])->name('logout');
+});
+Route::group(["prefix" => "dashboard", "as" => "dashboard.admin."], function () {
+    Route::group(["prefix" => "admins", "as" => "admins."], function () {
+        Route::get('/', [\App\Http\Controllers\Admin\Dashboard\AdminsController::class, 'index'])->name('index');
+        Route::post('/', [\App\Http\Controllers\Admin\Dashboard\AdminsController::class, 'create'])->name('add');
+        Route::put('/{admin}', [\App\Http\Controllers\Admin\Dashboard\AdminsController::class, 'update'])->name('update');
+        Route::delete('/{admin}', [\App\Http\Controllers\Admin\Dashboard\AdminsController::class, 'delete'])->name('delete');
+
+    });
+    Route::group(["prefix" => "drugs", "as" => "drugs."], function () {
+        Route::get('/', [\App\Http\Controllers\Admin\Dashboard\DrugsController::class, 'index'])->name('index');
+        Route::post('/', [\App\Http\Controllers\Admin\Dashboard\DrugsController::class, 'create'])->name('add');
+        Route::put('/{drug}', [\App\Http\Controllers\Admin\Dashboard\DrugsController::class, 'update'])->name('update');
+        Route::delete('/{drug}', [\App\Http\Controllers\Admin\Dashboard\DrugsController::class, 'delete'])->name('delete');
+
+    });
+    Route::group(["prefix" => "companies", "as" => "company."], function () {
+        Route::get('/', [\App\Http\Controllers\Admin\Dashboard\InsuranceCompaniesController::class, 'index'])->name('index');
+        Route::post('/', [\App\Http\Controllers\Admin\Dashboard\InsuranceCompaniesController::class, 'create'])->name('add');
+        Route::put('/{company}', [\App\Http\Controllers\Admin\Dashboard\InsuranceCompaniesController::class, 'update'])->name('update');
+        Route::delete('/{company}', [\App\Http\Controllers\Admin\Dashboard\InsuranceCompaniesController::class, 'delete'])->name('delete');
+
+    });
+    Route::group(["prefix" => "doctors", "as" => "doctors."], function () {
+        Route::get('/', [\App\Http\Controllers\Admin\Dashboard\DoctorsController::class, 'index'])->name('index');
+        Route::post('/', [\App\Http\Controllers\Admin\Dashboard\DoctorsController::class, 'create'])->name('add');
+        Route::put('/{drug}', [\App\Http\Controllers\Admin\Dashboard\DoctorsController::class, 'update'])->name('update');
+        Route::delete('/{drug}', [\App\Http\Controllers\Admin\Dashboard\DoctorsController::class, 'delete'])->name('delete');
+
+    });
 });
