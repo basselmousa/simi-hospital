@@ -91,6 +91,10 @@
                     </ul>
                 </li>
                 <li>
+                    <a href="{{ route('dashboard.doctor.labs.index') }}" class="mm-active">
+                        <i class="metismenu-icon pe-7s-graph"></i>Labs
+                    </a>
+                </li>    <li>
                     <a href="{{ route('dashboard.doctor.reports.index') }}" class="mm-active">
                         <i class="metismenu-icon pe-7s-graph"></i>Reports
                     </a>

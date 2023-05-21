@@ -14,6 +14,11 @@
 
     <meta name="msapplication-tap-highlight" content="no">
     <link href="{{asset("admin/assets/css/main.d810cf0ae7f39f28f336.css")}}" rel="stylesheet">
+    <style>
+        .invalid-feedback{
+            display: block !important;
+        }
+    </style>
 </head>
 <body>
 <div class="app-container app-theme-white body-tabs-shadow">
@@ -193,7 +198,25 @@
                                                     @enderror
                                                 </div>
                                             </div>
-                                            <div class="col-md-12">
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <select class="form-control form-control-lg" name="company"
+                                                            id="exampleFormControlSelect2">
+                                                        <option value="0" selected>Insurance Company</option>
+                                                        @foreach($companies as $company)
+                                                            <option
+                                                                value="{{ $company->id }}" {{ old('company') == $company ? 'selected' : '' }}>{{ $company->name }}</option>
+                                                        @endforeach
+
+                                                    </select>
+                                                    @error('company')
+                                                    <span class="invalid-feedback" role="alert">
+                                                            <strong>{{ $message }}</strong>
+                                                        </span>
+                                                    @enderror
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
 
                                                 <div class="form-group">
 

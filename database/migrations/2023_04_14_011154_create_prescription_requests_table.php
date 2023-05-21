@@ -16,7 +16,7 @@ return new class extends Migration {
             $table->id();
             $table->foreignId("doctor_id")->constrained("doctors")->cascadeOnUpdate()->cascadeOnDelete();
             $table->foreignId("user_id")->constrained("users")->cascadeOnUpdate()->cascadeOnDelete();
-            $table->foreignId("drug_id")->constrained("medical_examinations")->cascadeOnUpdate()->cascadeOnDelete();
+            $table->foreignId("drug_id")->constrained("drugs")->cascadeOnUpdate()->cascadeOnDelete();
             $table->string("times");
             $table->string("note")->nullable();
             $table->timestamps();

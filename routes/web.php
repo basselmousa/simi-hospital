@@ -33,6 +33,12 @@ Route::group(['prefix' => 'dashboard', 'as' => 'dashboard.doctor.', 'middleware'
         Route::get('/', [\App\Http\Controllers\Doctor\Dashboard\ReportsController::class, 'index'])->name('index');
 
     });
+    Route::group(['prefix' => 'labs', 'as' => 'labs.'], function () {
+        Route::get('/', [\App\Http\Controllers\Doctor\Dashboard\DoctorLabsController::class, 'index'])->name('index');
+        Route::post('/', [\App\Http\Controllers\Doctor\Dashboard\DoctorLabsController::class, 'create'])->name('create');
+        Route::delete('/{lab}', [\App\Http\Controllers\Doctor\Dashboard\DoctorLabsController::class, 'delete'])->name('delete');
+
+    });
     Route::group(['prefix' => 'profile', 'as' => 'profile.'], function () {
         Route::get('/profile', [\App\Http\Controllers\Doctor\Auth\ProfileController::class, 'index'])->name('profile');
         Route::put('/profile', [\App\Http\Controllers\Doctor\Auth\ProfileController::class, 'update'])->name('update');
@@ -224,10 +230,10 @@ Route::group(["prefix" => "dashboard", "as" => "dashboard.admin."], function () 
 
     });
     Route::group(["prefix" => "doctors", "as" => "doctors."], function () {
-        Route::get('/', [\App\Http\Controllers\Admin\Dashboard\DoctorsController::class, 'index'])->name('index');
-        Route::post('/', [\App\Http\Controllers\Admin\Dashboard\DoctorsController::class, 'create'])->name('add');
-        Route::put('/{drug}', [\App\Http\Controllers\Admin\Dashboard\DoctorsController::class, 'update'])->name('update');
-        Route::delete('/{drug}', [\App\Http\Controllers\Admin\Dashboard\DoctorsController::class, 'delete'])->name('delete');
+        Route::get('/pending', [\App\Http\Controllers\Admin\Dashboard\DoctorsController::class, 'pending'])->name('pending');
+        Route::get('/active', [\App\Http\Controllers\Admin\Dashboard\DoctorsController::class, 'active'])->name('active');
+        Route::post('/pending/{doctor}', [\App\Http\Controllers\Admin\Dashboard\DoctorsController::class, 'activate'])->name('activate');
+        Route::post('/active/{doctor}', [\App\Http\Controllers\Admin\Dashboard\DoctorsController::class, 'deActivate'])->name('deactivate');
 
     });
 });

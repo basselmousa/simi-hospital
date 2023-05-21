@@ -1,5 +1,8 @@
 @extends('layouts.app')
 @section('content')
+
+    @include("helpers.alerts")
+
     <section class="content-header">
         <div class="container-fluid">
             <div class="row mb-2">
@@ -18,10 +21,10 @@
                 @csrf
                 <div class="form-group">
                     <div id="datepicker-popup" class="input-group date datepicker">
-                        <input type="text" name="date" class="form-control">
-                        <span class="input-group-addon input-group-append border-left">
-                                      <span class="far fa-calendar input-group-text"></span>
-                                    </span>
+                        <input type="date" name="date" class="form-control">
+{{--                        <span class="input-group-addon input-group-append border-left">--}}
+{{--                                      <span class="far fa-calendar input-group-text"></span>--}}
+{{--                                    </span>--}}
                     </div>
                     @error('date')
 
@@ -42,8 +45,8 @@
 {{--                        </div>--}}
                         <div class="input-group date" id="timepicker-example" data-target-input="nearest">
                             <div class="input-group" data-target="#timepicker-example" data-toggle="datetimepicker">
-                                <input type="text" name="time" value="{{ old('time') }}"  class="form-control datetimepicker-input" data-target="#timepicker-example">
-                                <div class="input-group-addon input-group-append"><i class="far fa-clock input-group-text"></i></div>
+                                <input type="time" name="time" value="{{ old('time') }}"  class="form-control datetimepicker-input" data-target="#timepicker-example">
+{{--                                <div class="input-group-addon input-group-append"><i class="far fa-clock input-group-text"></i></div>--}}
                             </div>
                         </div>
                         @error('time')

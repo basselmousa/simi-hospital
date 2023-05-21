@@ -53,24 +53,24 @@
                     </a>
                 </li>
 
-{{--                <li>--}}
-{{--                    <a href="#">--}}
-{{--                        <i class="metismenu-icon pe-7s-way"></i>Doctors--}}
-{{--                    </a>--}}
-{{--                    <ul>--}}
-{{--                        <li>--}}
-{{--                            <a href="{{ route('dashboard.doctor.appointments.doctor-home') }}" class="mm-active">--}}
-{{--                                <i class="metismenu-icon"></i>Pending Doctors--}}
-{{--                            </a>--}}
-{{--                        </li>--}}
-{{--                        <li>--}}
-{{--                            <a href="{{ route('dashboard.doctor.appointments.doctor-clinic') }}">--}}
-{{--                                <i class="metismenu-icon"></i>Active Doctors--}}
-{{--                            </a>--}}
-{{--                        </li>--}}
+                <li>
+                    <a href="#">
+                        <i class="metismenu-icon pe-7s-way"></i>Doctors
+                    </a>
+                    <ul>
+                        <li>
+                            <a href="{{ route('dashboard.admin.doctors.pending') }}" class="mm-active">
+                                <i class="metismenu-icon"></i>Pending Doctors
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{{ route('dashboard.admin.doctors.active') }}">
+                                <i class="metismenu-icon"></i>Active Doctors
+                            </a>
+                        </li>
 
-{{--                    </ul>--}}
-{{--                </li>--}}
+                    </ul>
+                </li>
 {{--                <li>--}}
 {{--                    <a href="#">--}}
 {{--                        <i class="metismenu-icon pe-7s-way"></i>Pharmacies--}}
@@ -86,7 +86,7 @@
 {{--                                <i class="metismenu-icon"></i>Active Pharmacies--}}
 {{--                            </a>--}}
 {{--                        </li>--}}
-{{--                        --}}
+
 {{--                    </ul>--}}
 {{--                </li>--}}
 {{--                <li>--}}

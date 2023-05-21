@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Models\InsuranceCompany;
 use App\Providers\RouteServiceProvider;
 use App\Models\User;
 use Illuminate\Auth\Events\Registered;
@@ -64,9 +65,17 @@ class RegisterController extends Controller
             'gender' => 'required|not_in:0',
             'ssn' => 'required|unique:users,ssn',
             'phone_number' => 'required|unique:doctors|min:10|max:10',
-            'image' => 'nullable|mimes:jpg,jpeg,png|max:10000'
+            'image' => 'nullable|mimes:jpg,jpeg,png|max:10000',
+            'company' => 'required_if:company,!=,0',
+
         ]);
     }
+    public function showRegistrationForm()
+    {
+        $companies = InsuranceCompany::all();
+        return view('auth.register',compact("companies"));
+    }
+
     public function register(Request $request)
     {
         $this->validator($request->all())->validate();

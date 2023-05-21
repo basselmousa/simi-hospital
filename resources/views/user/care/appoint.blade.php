@@ -13,15 +13,18 @@
     <!-- Main content -->
     <section class="content">
         <div class="container-fluid">
-            <form id="take-appoint-form-{{$medicine->id}}" action="{{ route('user.doctors.appoint-care', $medicine->id) }}"
-                  method="post" >
+            <form id="take-appoint-form-{{$medicine->id}}"
+                  action="{{ route('user.doctors.appoint-care', $medicine->id) }}"
+                  method="post">
                 @csrf
                 <div class="form-group">
+                    <label>From Date</label>
                     <div id="datepicker-popup" class="input-group date datepicker">
-                        <input type="text" name="date" class="form-control" placeholder="From Date">
-                        <span class="input-group-addon input-group-append border-left">
-                                      <span class="far fa-calendar input-group-text"></span>
-                                    </span>
+
+                        <input type="date" name="date" class="form-control" placeholder="From Date">
+                        {{--                        <span class="input-group-addon input-group-append border-left">--}}
+                        {{--                                      <span class="far fa-calendar input-group-text"></span>--}}
+                        {{--                                    </span>--}}
                     </div>
                     @error('date')
 
@@ -31,11 +34,13 @@
                     @enderror
                 </div>
                 <div class="form-group">
+                    <label>To Date </label>
                     <div id="datepicker-popup-1" class="input-group date datepicker">
-                        <input type="text" name="period" class="form-control" placeholder="To Date">
-                        <span class="input-group-addon input-group-append border-left">
-                                      <span class="far fa-calendar input-group-text"></span>
-                                    </span>
+
+                        <input type="date" name="period" class="form-control" placeholder="To Date">
+                        {{--                        <span class="input-group-addon input-group-append border-left">--}}
+                        {{--                                      <span class="far fa-calendar input-group-text"></span>--}}
+                        {{--                                    </span>--}}
                     </div>
                     @error('period')
 
