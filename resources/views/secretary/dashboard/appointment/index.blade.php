@@ -3,7 +3,7 @@
     <div class="card">
         <div class="card-header">
             <div class="row">
-                <div class="col-md-8">
+                <div class="col-md-12">
                     <h3 class="card-title">{{ $type }} Appointments Table</h3>
                 </div>
             </div>
@@ -45,53 +45,55 @@
                                 Change Appointment Status
                             </button>
 
-                            <div class="modal fade" id="add-certificate-modal-{{$appoint->id}}" style="display: none;" aria-hidden="true">
-                                <div class="modal-dialog">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <h4 class="modal-title">Change Appointment Status</h4>
-                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                <span aria-hidden="true">×</span>
-                                            </button>
-                                        </div>
-                                        <div class="modal-body">
-                                            <form id="add-certificate-form-{{$appoint->id}}" action="{{ route('secretary.dashboard.appointments.change-status', $appoint->id) }}"
-                                                  method="post" enctype="multipart/form-data">
-                                                @csrf
-                                                @method('PUT')
-                                                <div class="form-group">
-                                                    <label for="exampleInputUsername1">Status</label>
-                                                    <select name="status" class="form-control">
+                          @section("modal")
+                                <div class="modal fade" id="add-certificate-modal-{{$appoint->id}}" style="display: none;" aria-hidden="true">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h4 class="modal-title">Change Appointment Status</h4>
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                    <span aria-hidden="true">×</span>
+                                                </button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <form id="add-certificate-form-{{$appoint->id}}" action="{{ route('secretary.dashboard.appointments.change-status', $appoint->id) }}"
+                                                      method="post" enctype="multipart/form-data">
+                                                    @csrf
+                                                    @method('PUT')
+                                                    <div class="form-group">
+                                                        <label for="exampleInputUsername1">Status</label>
+                                                        <select name="status" class="form-control">
 
-                                                        @foreach(\App\Http\AppointmentConfigs::$statuses as $status)
-                                                            <option value="{{$status}}">{{ $status }}</option>
-                                                        @endforeach
+                                                            @foreach(\App\Http\AppointmentConfigs::$statuses as $status)
+                                                                <option value="{{$status}}">{{ $status }}</option>
+                                                            @endforeach
 
-                                                    </select>
-                                                    @error('status')
-                                                    <span class="invalid-feedback" role="alert">
+                                                        </select>
+                                                        @error('status')
+                                                        <span class="invalid-feedback" role="alert">
                                                         <strong>{{ $message }}</strong>
                                                     </span>
-                                                    @enderror
-                                                </div>
+                                                        @enderror
+                                                    </div>
 
-                                            </form>
-                                        </div>
-                                        <div class="modal-footer justify-content-between">
-                                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                                            <button type="button" class="btn btn-primary"
-                                                    onclick="event.preventDefault();
+                                                </form>
+                                            </div>
+                                            <div class="modal-footer justify-content-between">
+                                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                                <button type="button" class="btn btn-primary"
+                                                        onclick="event.preventDefault();
                                                         document.getElementById('add-certificate-form-{{$appoint->id}}').submit();
                                                         "
-                                            >Save changes
-                                            </button>
+                                                >Save changes
+                                                </button>
+                                            </div>
                                         </div>
+                                        <!-- /.modal-content -->
                                     </div>
-                                    <!-- /.modal-content -->
+                                    <!-- /.modal-dialog -->
                                 </div>
-                                <!-- /.modal-dialog -->
-                            </div>
 
+                            @endsection
                         </td>
                     </tr>
                 @endforeach

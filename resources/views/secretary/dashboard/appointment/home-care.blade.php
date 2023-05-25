@@ -3,7 +3,7 @@
     <div class="card">
         <div class="card-header">
             <div class="row">
-                <div class="col-md-8">
+                <div class="col-md-12">
                     <h3 class="card-title">Homeable Care Appointments Table</h3>
                 </div>
             </div>
@@ -48,7 +48,7 @@
                                     <i class="fa fa-plus"></i>
                                     Accept
                                 </button>
-
+                            @section("modal")
                                 <div class="modal fade" id="add-certificate-modal-{{$appoint->id}}" style="display: none;" aria-hidden="true">
                                     <div class="modal-dialog">
                                         <div class="modal-content">
@@ -92,7 +92,7 @@
                                     </div>
                                     <!-- /.modal-dialog -->
                                 </div>
-
+                                @endsection
                             @endif
                         </td>
                     </tr>

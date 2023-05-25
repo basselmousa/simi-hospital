@@ -12,7 +12,7 @@
 @section('content')
 
 
-
+@include("helpers.alerts")
     <div class="col-12 grid-margin">
         <div class="card">
 
@@ -64,11 +64,13 @@
         </div>
     </div>
 
-    @include('doctors.secretary.add')
+
 
 
 @endsection
-
+@section("modal")
+    @include('doctors.secretary.add')
+@endsection
 @section('js')
     <script src="{{asset('admin/js/file-upload.js')}}"></script>
     <script src="{{asset('admin/js/toastDemo.js')}}"></script>

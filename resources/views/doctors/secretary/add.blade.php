@@ -14,7 +14,7 @@
                     <div class="form-group">
                         <input type="text" name="name" class="form-control form-control-lg"
                                value="{{ old('name') }}"
-                               id="exampleInput1"  autocomplete="false" placeholder="Email">
+                               id="exampleInput1"  autocomplete="false" placeholder="Name">
                         @error('name')
                         <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
