@@ -4,7 +4,12 @@ namespace App\Http\Controllers\Doctor\Dashboard;
 
 use App\Http\Controllers\Controller;
 use App\Models\Appointment;
+use App\Models\DoctorLab;
+use App\Models\Drug;
 use App\Models\Homeable;
+use App\Models\MedicalExamination;
+use App\Models\MedicalExaminationRequest;
+use App\Models\PrescriptionRequest;
 use Illuminate\Http\Request;
 
 class AppointmentsController extends Controller
@@ -17,8 +22,10 @@ class AppointmentsController extends Controller
             ->where('status', '=', 'Accepted')
             ->get();
 
-
-        return view('doctors.appointments.index', compact('appoints'));
+        $drugs = Drug::all();
+        $doctorLabs = DoctorLab::where("doctor_id",auth("doctor")->id())->pluck("medical_lab_id")->toArray();
+        $examinations = MedicalExamination::whereIn("medical_lab_id",$doctorLabs)->get();
+        return view('doctors.appointments.index', compact('appoints','drugs','examinations'));
     }
 
     public function home()
@@ -27,8 +34,11 @@ class AppointmentsController extends Controller
             ->where('doctor_id', auth('doctor')->id())
             ->where('type', '=', 'Home')
             ->get();
+        $drugs = Drug::all();
+        $doctorLabs = DoctorLab::where("doctor_id",auth("doctor")->id())->pluck("medical_lab_id")->toArray();
+        $examinations = MedicalExamination::whereIn("medical_lab_id",$doctorLabs)->get();
 
-        return view('doctors.appointments.index', compact('appoints'));
+        return view('doctors.appointments.index',  compact('appoints','drugs','examinations'));
     }
 
     public function pending()
@@ -103,6 +113,41 @@ class AppointmentsController extends Controller
     {
         $appointment->delete();
         return redirect()->route('dashboard.doctor.appointments.home');
+    }
+
+    public function add_examination(Request $request, Appointment $appointment)
+    {
+        //
+
+        $request->validate([
+            "examination" => "required|not_in:0"
+        ]);
+        MedicalExaminationRequest::create([
+            "doctor_id" => auth("doctor")->id(),
+            "user_id" => $appointment->user_id,
+            "medical_examination_id" => $request->examination,
+        ]);
+
+        return back()->with("success","Examination Added Successfully");
+    }
+
+    public function add_drug(Request $request,Appointment $appointment)
+    {
+        //
+        $request->validate([
+            "drug" => "required|not_in:0",
+            "times" => "required",
+            "notes" => "nullable"
+        ]);
+
+        PrescriptionRequest::create([
+            "doctor_id" => auth("doctor")->id(),
+            "user_id" => $appointment->user_id,
+            "drug_id" => $request->drug,
+            "times" => $request->times,
+            "note" => $request->notes,
+        ]);
+        return back()->with("success","Prescription Created Successfully");
     }
 
 }

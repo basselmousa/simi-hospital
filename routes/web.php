@@ -77,6 +77,8 @@ Route::group(['prefix' => 'dashboard', 'as' => 'dashboard.doctor.', 'middleware'
         Route::get('/pending', [\App\Http\Controllers\Doctor\Dashboard\AppointmentsController::class, 'pending'])->name('pending');
         Route::put('/pending/{appointment}', [\App\Http\Controllers\Doctor\Dashboard\AppointmentsController::class, 'change_appointment_status'])->name('change-status');
         Route::put('/report/{appointment}', [\App\Http\Controllers\Doctor\Dashboard\AppointmentsController::class, 'write_report'])->name('write-report');
+        Route::put('/addDrug/{appointment}', [\App\Http\Controllers\Doctor\Dashboard\AppointmentsController::class, 'add_drug'])->name('add-drug');
+        Route::put('/addExamination/{appointment}', [\App\Http\Controllers\Doctor\Dashboard\AppointmentsController::class, 'add_examination'])->name('add-examination');
         Route::delete('/{appointment}', [\App\Http\Controllers\Doctor\Dashboard\AppointmentsController::class, 'destroy'])->name('doctor-delete');
 //        Route::get('/{doctor}', [\App\Http\Controllers\User\DoctorController::class, 'show_appoint'])->name('showAppoint');
 //        Route::post('/{doctor}', [\App\Http\Controllers\User\DoctorController::class, 'appoint'])->name('appoint');
