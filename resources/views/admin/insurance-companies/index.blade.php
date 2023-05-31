@@ -16,7 +16,7 @@
         <div class="card">
 
             <div class="card-body">
-                <h4 class="card-title">Admins Table</h4>
+                <h4 class="card-title">Insurance Companies Table</h4>
                 <button class="btn btn-primary" data-toggle="modal" data-target="#add-date">Add</button>
                 <div class="row">
                     <div class="table-sorter-wrapper col-lg-12 table-responsive">

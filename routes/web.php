@@ -169,6 +169,7 @@ Route::group(["prefix" => "dashboard/pharmacy", "as" => "dashboard.pharmacy."], 
     });
     Route::group(["prefix" => "prescription", "as" => "prescription."], function () {
         Route::get("pending", [\App\Http\Controllers\Pharmacy\Dashboard\PharmacyPrescriptionController::class, "pending"])->name("pending");
+        Route::post("approve/{prescriptionRequest}", [\App\Http\Controllers\Pharmacy\Dashboard\PharmacyPrescriptionController::class, "action"])->name("action");
         Route::get("approved", [\App\Http\Controllers\Pharmacy\Dashboard\PharmacyPrescriptionController::class, "approved"])->name("approved");
     });
     Route::group(["prefix" => "drugs", "as" => "drugs."], function () {
@@ -199,6 +200,7 @@ Route::group(["prefix" => "dashboard/labs", "as" => "dashboard.labs."], function
     Route::group(["prefix" => "examinations", "as" => "examination."], function () {
         Route::get("/", [\App\Http\Controllers\Lab\Dashboard\LabExaminationsController::class, "index"])->name("index");
         Route::post("/", [\App\Http\Controllers\Lab\Dashboard\LabExaminationsController::class, "addExamination"])->name("add");
+        Route::post("/approve/{examination}", [\App\Http\Controllers\Lab\Dashboard\LabExaminationsController::class, "setValue"])->name("approve");
         Route::delete("/{examination}", [\App\Http\Controllers\Lab\Dashboard\LabExaminationsController::class, "deleteExamination"])->name("delete");
     });
 

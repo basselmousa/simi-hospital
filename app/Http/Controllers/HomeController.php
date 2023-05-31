@@ -6,6 +6,7 @@ use App\Models\Appointment;
 use App\Models\Doctor;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 class HomeController extends Controller
@@ -18,6 +19,7 @@ class HomeController extends Controller
      */
     public function index()
     {
+//        dd(Auth::guard("pharmacy")->check());
         $all_doctors = Doctor::all()->count();
         $all_patients = User::all()->count();
         $all_appointments = Appointment::all()->count();

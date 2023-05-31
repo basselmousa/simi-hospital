@@ -14,7 +14,9 @@
     <link href="{{asset('home/assets/img/apple-touch-icon.png')}}" rel="apple-touch-icon">
 
     <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i"
+        rel="stylesheet">
 
     <!-- Vendor CSS Files -->
     <link href="{{asset('home/assets/vendor/fontawesome-free/css/all.min.css')}}" rel="stylesheet">
@@ -66,52 +68,101 @@
                 <li><a class="nav-link scrollto" href="#about">About Us</a></li>
 
                 <li><a class="nav-link scrollto" href="#doctors">Doctors</a></li>
-{{--                <li class="dropdown"><a href="#"><span>Drop Down</span> <i class="bi bi-chevron-down"></i></a>--}}
-{{--                    <ul>--}}
-{{--                        <li><a href="#">Drop Down 1</a></li>--}}
-{{--                        <li class="dropdown"><a href="#"><span>Deep Drop Down</span> <i class="bi bi-chevron-right"></i></a>--}}
-{{--                            <ul>--}}
-{{--                                <li><a href="#">Deep Drop Down 1</a></li>--}}
-{{--                                <li><a href="#">Deep Drop Down 2</a></li>--}}
-{{--                                <li><a href="#">Deep Drop Down 3</a></li>--}}
-{{--                                <li><a href="#">Deep Drop Down 4</a></li>--}}
-{{--                                <li><a href="#">Deep Drop Down 5</a></li>--}}
-{{--                            </ul>--}}
-{{--                        </li>--}}
-{{--                        <li><a href="#">Drop Down 2</a></li>--}}
-{{--                        <li><a href="#">Drop Down 3</a></li>--}}
-{{--                        <li><a href="#">Drop Down 4</a></li>--}}
-{{--                    </ul>--}}
-{{--                </li>--}}
+                {{--                <li class="dropdown"><a href="#"><span>Drop Down</span> <i class="bi bi-chevron-down"></i></a>--}}
+                {{--                    <ul>--}}
+                {{--                        <li><a href="#">Drop Down 1</a></li>--}}
+                {{--                        <li class="dropdown"><a href="#"><span>Deep Drop Down</span> <i class="bi bi-chevron-right"></i></a>--}}
+                {{--                            <ul>--}}
+                {{--                                <li><a href="#">Deep Drop Down 1</a></li>--}}
+                {{--                                <li><a href="#">Deep Drop Down 2</a></li>--}}
+                {{--                                <li><a href="#">Deep Drop Down 3</a></li>--}}
+                {{--                                <li><a href="#">Deep Drop Down 4</a></li>--}}
+                {{--                                <li><a href="#">Deep Drop Down 5</a></li>--}}
+                {{--                            </ul>--}}
+                {{--                        </li>--}}
+                {{--                        <li><a href="#">Drop Down 2</a></li>--}}
+                {{--                        <li><a href="#">Drop Down 3</a></li>--}}
+                {{--                        <li><a href="#">Drop Down 4</a></li>--}}
+                {{--                    </ul>--}}
+                {{--                </li>--}}
 
+
+
+
+                {{--                @if (Route::has('login'))--}}
+
+{{--                @auth("pharmacy")--}}
+
+                    @if(\Illuminate\Support\Facades\Auth::guard("web")->check() /*== "web"*/)
+                        <li>
+                            <a href="{{ route('user.profile.index') }}"
+                               class="nav-link scrollto text-sm text-gray-700 dark:text-gray-500 underline">Home</a>
+                        </li>
+                    @elseif(\Illuminate\Support\Facades\Auth::guard("doctor")->check() /*== "doctor"*/)
+                        <li>
+                            <a href="{{ route('dashboard.doctor.profile.profile') }}"
+                               class="nav-link scrollto text-sm text-gray-700 dark:text-gray-500 underline">Home
+                            </a>
+                        </li>
+                    @elseif(\Illuminate\Support\Facades\Auth::guard("secretary")->check() /*== "secretary"*/)
+                        <li>
+                            <a href="{{ route('dashboard.appointments.clinic') }}"
+                               class="nav-link scrollto text-sm text-gray-700 dark:text-gray-500 underline">Home
+                            </a>
+                        </li>
+                    @elseif(\Illuminate\Support\Facades\Auth::guard("pharmacy")->check() /*== "pharmacy"*/)
+                        <li>
+                            <a href="{{ route('dashboard.pharmacy.profile.profile') }}"
+                               class="nav-link scrollto text-sm text-gray-700 dark:text-gray-500 underline">Home
+                            </a>
+                        </li>
+                    @elseif(\Illuminate\Support\Facades\Auth::guard("lab")->check() /*== "lab"*/)
+                        <li>
+                            <a href="{{ route('dashboard.labs.profile.profile') }}"
+                               class="nav-link scrollto text-sm text-gray-700 dark:text-gray-500 underline">Home
+                            </a>
+                        </li>
+                    @elseif(Illuminate\Support\Facades\Auth::guard("admin")->check() /*== "admin"*/)
+                        <li>
+                            <a href="{{ route('dashboard.admin.index') }}"
+                               class="nav-link scrollto text-sm text-gray-700 dark:text-gray-500 underline">Home
+                            </a>
+                        </li>
+
+                    @else
+                        {{--                    <a href="{{ route('login') }}" class="appointment-btn scrollto">Log in</a>--}}
+                        <li class="dropdown"><a href="#"><span>Login</span> <i class="bi bi-chevron-down"></i></a>
+                            <ul>
+                                <li><a href="{{ route("login") }}">Patient</a></li>
+
+                                <li><a href="{{ route("doctors.showLoginForm") }}">Doctor</a></li>
+                                <li><a href="{{ route("secretary.login") }}">Secretary</a></li>
+                                <li><a href="{{ route("pharmacy.showLoginForm") }}">Pharmacy</a></li>
+                                <li><a href="{{ route("labs.showLoginForm") }}">Lab</a></li>
+                                <li><a href="{{ route("admins.showLoginForm") }}">Admin</a></li>
+                            </ul>
+                        </li>
+                        {{--                    @if (Route::has('register'))--}}
+                        {{--                        <a href="{{ route('register') }}" class="appointment-btn scrollto">Register</a>--}}
+                        {{--                    @endif--}}
+                    @endif
+{{--                @endauth--}}
+
+                {{--                @endif--}}
             </ul>
             <i class="bi bi-list mobile-nav-toggle"></i>
         </nav><!-- .navbar -->
-
-        @if (Route::has('login'))
-
-                @auth
-                    <a href="{{ route('user.profile.index') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">Home</a>
-                @else
-                    <a href="{{ route('login') }}" class="appointment-btn scrollto">Log in</a>
-
-{{--                    @if (Route::has('register'))--}}
-{{--                        <a href="{{ route('register') }}" class="appointment-btn scrollto">Register</a>--}}
-{{--                    @endif--}}
-                @endauth
-
-        @endif
-{{--        <a href="#appointment" class="appointment-btn scrollto"><span class="d-none d-md-inline">Make an</span> Appointment</a>--}}
+        {{--        <a href="#appointment" class="appointment-btn scrollto"><span class="d-none d-md-inline">Make an</span> Appointment</a>--}}
 
     </div>
 </header><!-- End Header -->
 
 <!-- ======= Hero Section ======= -->
 <section id="hero" class="d-flex align-items-center">
-{{--    <div class="container">--}}
-{{--        <h1>Welcome to Medical Clinics</h1>--}}
-{{--        <a href="#about" class="btn-get-started scrollto">Get Started</a>--}}
-{{--    </div>--}}
+    {{--    <div class="container">--}}
+    {{--        <h1>Welcome to Medical Clinics</h1>--}}
+    {{--        <a href="#about" class="btn-get-started scrollto">Get Started</a>--}}
+    {{--    </div>--}}
 </section><!-- End Hero -->
 
 <main id="main">
@@ -125,9 +176,14 @@
                     <div class="content">
                         <h3>Why Choose Medical Clinics?</h3>
                         <p>
-                            Medical clinic It is a web application that represents a platform for collecting medical clinics in one place according to the geographical area, which includes all medical specialties and doctors. The application also allows booking advance appointments in the clinic or through the home examination service.
+                            Medical clinic It is a web application that represents a platform for collecting medical
+                            clinics in one place according to the geographical area, which includes all medical
+                            specialties and doctors. The application also allows booking advance appointments in the
+                            clinic or through the home examination service.
 
-                            In addition, it enables the auditor to save his medical information in a computerized way, to know the doctors close to the area of residence, and to evaluate the doctors according to his clinic through the auditors.
+                            In addition, it enables the auditor to save his medical information in a computerized way,
+                            to know the doctors close to the area of residence, and to evaluate the doctors according to
+                            his clinic through the auditors.
 
                         </p>
                         <div class="text-center">
@@ -172,13 +228,19 @@
         <div class="container-fluid">
 
             <div class="row">
-                <div class="col-xl-5 col-lg-6 video-box d-flex justify-content-center align-items-stretch position-relative">
+                <div
+                    class="col-xl-5 col-lg-6 video-box d-flex justify-content-center align-items-stretch position-relative">
                     <a href="https://www.youtube.com/watch?v=jDDaplaOz7Q" class="glightbox play-btn mb-4"></a>
                 </div>
 
-                <div class="col-xl-7 col-lg-6 icon-boxes d-flex flex-column align-items-stretch justify-content-center py-5 px-lg-5">
+                <div
+                    class="col-xl-7 col-lg-6 icon-boxes d-flex flex-column align-items-stretch justify-content-center py-5 px-lg-5">
                     <h3>For one's pleasure is to shun the consequences of something</h3>
-                    <p>There is a special section in the clinic that contains the specialized doctor and the secretary so that when booking an appointment through the patient, the reservation arrives at the secretariat and the practical secretary follows. As for the doctor, the doctor receives an appointment, reviews the patient’s file, sets the appropriate diagnosis, sets the price, and ends the appointment.</p>
+                    <p>There is a special section in the clinic that contains the specialized doctor and the secretary
+                        so that when booking an appointment through the patient, the reservation arrives at the
+                        secretariat and the practical secretary follows. As for the doctor, the doctor receives an
+                        appointment, reviews the patient’s file, sets the appropriate diagnosis, sets the price, and
+                        ends the appointment.</p>
 
                 </div>
             </div>
@@ -195,7 +257,8 @@
                 <div class="col-lg-4 col-md-4">
                     <div class="count-box">
                         <i class="fas fa-user-md"></i>
-                        <span data-purecounter-start="0" data-purecounter-end="{{ $all_doctors }}" data-purecounter-duration="1" class="purecounter"></span>
+                        <span data-purecounter-start="0" data-purecounter-end="{{ $all_doctors }}"
+                              data-purecounter-duration="1" class="purecounter"></span>
                         <p>Doctors</p>
                     </div>
                 </div>
@@ -203,7 +266,8 @@
                 <div class="col-lg-4 col-md-4 mt-5 mt-md-0">
                     <div class="count-box">
                         <i class="fa fa-user-injured"></i>
-                        <span data-purecounter-start="0" data-purecounter-end="{{ $all_patients }}" data-purecounter-duration="1" class="purecounter"></span>
+                        <span data-purecounter-start="0" data-purecounter-end="{{ $all_patients }}"
+                              data-purecounter-duration="1" class="purecounter"></span>
                         <p>Patients</p>
                     </div>
                 </div>
@@ -211,11 +275,11 @@
                 <div class="col-lg-4 col-md-4 mt-5 mt-lg-0">
                     <div class="count-box">
                         <i class="fas fa-location-arrow"></i>
-                        <span data-purecounter-start="0" data-purecounter-end="{{ $all_appointments }}" data-purecounter-duration="1" class="purecounter"></span>
+                        <span data-purecounter-start="0" data-purecounter-end="{{ $all_appointments }}"
+                              data-purecounter-duration="1" class="purecounter"></span>
                         <p>Number of patients treated</p>
                     </div>
                 </div>
-
 
 
             </div>
@@ -224,34 +288,35 @@
     </section><!-- End Counts Section -->
 
 
-
     <!-- ======= Doctors Section ======= -->
     <section id="doctors" class="doctors">
         <div class="container">
 
             <div class="section-title">
                 <h2>Top Rated Doctors</h2>
-                <p>Fortunately he suffers great pains. The consequences of his avoidance had to do with some. May they be the main game. Anyone whom anyone has any desire for. And no one who hinders receives them otherwise. It is because he shuns the services which he's been in the advantage of.
+                <p>Fortunately he suffers great pains. The consequences of his avoidance had to do with some. May they
+                    be the main game. Anyone whom anyone has any desire for. And no one who hinders receives them
+                    otherwise. It is because he shuns the services which he's been in the advantage of.
                 </p>
             </div>
 
             <div class="row">
 
-              @foreach($doctors as $doctor)
+                @foreach($doctors as $doctor)
                     <div class="col-lg-6">
                         <div class="member d-flex align-items-start">
-                            <div class="pic"><img src="{{ asset('storage/'.$doctor->image) }}" class="img-fluid" alt=""></div>
+                            <div class="pic"><img src="{{ asset('storage/'.$doctor->image) }}" class="img-fluid" alt="">
+                            </div>
                             <div class="member-info">
                                 <h4>{{ $doctor->full_name }}</h4>
                                 @foreach($doctor->certifications as $certificate)
                                     <span>{{ $certificate->title }}</span>
 
-
                                 @endforeach
                             </div>
                         </div>
                     </div>
-              @endforeach
+                @endforeach
 
             </div>
 
@@ -259,12 +324,12 @@
     </section><!-- End Doctors Section -->
 
 
-
 </main><!-- End #main -->
 
 
 <div id="preloader"></div>
-<a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+<a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i
+        class="bi bi-arrow-up-short"></i></a>
 
 <!-- Vendor JS Files -->
 <script src="{{asset('home/assets/vendor/purecounter/purecounter.js')}}"></script>

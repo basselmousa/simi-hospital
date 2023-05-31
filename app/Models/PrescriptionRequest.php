@@ -9,4 +9,14 @@ class PrescriptionRequest extends Model
 {
     use HasFactory;
     protected $guarded = [];
+
+    public function drug()
+    {
+        return $this->belongsTo(Drug::class,"drug_id");
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class,"user_id");
+    }
 }
