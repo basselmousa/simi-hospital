@@ -19,4 +19,14 @@ class PrescriptionRequest extends Model
     {
         return $this->belongsTo(User::class,"user_id");
     }
+
+    public function doctor()
+    {
+        return $this->belongsTo(Doctor::class,"doctor_id");
+    }
+
+    public function pharmacy()
+    {
+        return $this->belongsTo(Pharmacy::class,"pharmacy_id");
+    }
 }

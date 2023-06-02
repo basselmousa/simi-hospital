@@ -15,7 +15,6 @@
                     <th>Appoint Date</th>
                     <th>Nurse Name</th>
                     <th>Doctor Name</th>
-
                     <th>Period</th>
                     <th>Appoint Status</th>
                     <th>Price</th>

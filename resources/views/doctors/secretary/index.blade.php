@@ -1,18 +1,18 @@
 @extends('doctors.layouts.app')
 @section('css')
     <style>
-        .invalid-feedback{
+        .invalid-feedback {
             display: block !important;
         }
-        .select2, .select2-container, .select2-container--default  {
+
+        .select2, .select2-container, .select2-container--default {
             width: 100% !important;
         }
     </style>
 @endsection
 @section('content')
 
-
-@include("helpers.alerts")
+    @include("helpers.alerts")
     <div class="col-12 grid-margin">
         <div class="card">
 
@@ -39,20 +39,26 @@
                                     <td>{{ $secretary->email }}</td>
 
                                     <td>
-                                        <button class="btn btn-info rounded-circle" data-toggle="modal" data-target="#update-secretary-{{$secretary->id}}"><i class="fa fa-edit"></i>
+                                        <button class="btn btn-info rounded-circle" data-toggle="modal"
+                                                data-target="#update-secretary-{{$secretary->id}}"><i
+                                                class="fa fa-edit"></i>
 
                                         </button>
                                         <button class="btn btn-danger rounded-circle" onclick="event.preventDefault();
                                             document.getElementById('delete-secretary-form-{{$secretary->id}}').submit();
                                             "><i class="fa fa-trash"></i></button>
-                                        <form id="delete-secretary-form-{{$secretary->id}}" method="post" action="{{ route('dashboard.doctor.secretary.delete', $secretary->id) }}"  class="d-none">
+                                        <form id="delete-secretary-form-{{$secretary->id}}" method="post"
+                                              action="{{ route('dashboard.doctor.secretary.delete', $secretary->id) }}"
+                                              class="d-none">
                                             @method('DELETE')
                                             @csrf
                                         </form>
                                     </td>
-                                    @include('doctors.secretary.update', ['secretary' => $secretary])
+                                    @section("modal")
+                                        @include('doctors.secretary.update', ['secretary' => $secretary])
+                                    @endsection
                                 </tr>
-{{--                                @include('doctors.certificates.view',['id' => $certificate->id, 'image' => $certificate->image])--}}
+                                {{--                                @include('doctors.certificates.view',['id' => $certificate->id, 'image' => $certificate->image])--}}
 
                             @endforeach
 
@@ -64,9 +70,6 @@
         </div>
     </div>
 
-
-
-
 @endsection
 @section("modal")
     @include('doctors.secretary.add')
@@ -77,7 +80,7 @@
     <script src="{{asset('admin/js/formpickers.js')}}"></script>
     <script src="{{asset('admin/js/select2.js')}}"></script>
     <script>
-        showInfoToast = function(message) {
+        showInfoToast = function (message) {
             'use strict';
             resetToastPosition();
             $.toast({

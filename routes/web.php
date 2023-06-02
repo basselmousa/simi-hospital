@@ -120,8 +120,12 @@ Route::group(['prefix' => 'user', 'middleware' => ['auth:web'], 'as' => 'user.']
     });
     Route::group(['prefix' => 'reports', 'as' => 'reports.'], function () {
         Route::get('/', [\App\Http\Controllers\User\ReportsController::class, 'index'])->name('index');
-
-
+    });
+    Route::group(['prefix' => 'drugs', 'as' => 'drug.'], function () {
+        Route::get('/', [\App\Http\Controllers\User\DrugsController::class, 'index'])->name('index');
+    });
+    Route::group(['prefix' => 'examinations', 'as' => 'examination.'], function () {
+        Route::get('/', [\App\Http\Controllers\User\ExaminationsController::class, 'index'])->name('index');
     });
 
 });

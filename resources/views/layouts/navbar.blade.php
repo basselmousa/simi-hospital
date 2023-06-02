@@ -82,7 +82,7 @@
                                                                 Logout
                                                             </button >
                                                             <form id="doctor-logout-form" class="d-none"
-                                                                  action="{{ route('doctors.logout') }}" method="post">
+                                                                  action="{{ route('logout') }}" method="post">
                                                                 @csrf
 
                                                             </form>

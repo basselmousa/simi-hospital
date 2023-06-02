@@ -75,12 +75,13 @@
 {{--    </div>--}}
 
 </div>
-
+{{--@stack("modals")--}}
 <script type="text/javascript" src="{{asset("admin/assets/scripts/main.d810cf0ae7f39f28f336.js")}}"></script>
-
+@stack("modals")
+@yield("modal")
 @yield('js')
 @yield("modal-view")
-@yield("modal")
+
 </body>
 
 

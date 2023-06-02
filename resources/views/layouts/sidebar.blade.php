@@ -21,12 +21,6 @@
 
                 {{--        End --}}
 
-                <li>
-                    <a class="mm-active" href="{{ route('user.reports.index') }}">
-                        <i class="metismenu-icon"></i>
-                        <span class="menu-title">Reports</span>
-                    </a>
-                </li>
 
                 <li class="nav-item">
                     <a class="mm-active" href="{{ route('user.doctors.index') }}">
@@ -71,7 +65,24 @@
                         <span class="menu-title">Profile</span>
 
                     </a>
-
+                </li>
+                <li>
+                    <a class="mm-active" href="{{ route('user.drug.index') }}">
+                        <i class="metismenu-icon"></i>
+                        <span class="menu-title">Drugs</span>
+                    </a>
+                </li>
+                <li>
+                    <a class="mm-active" href="{{ route('user.examination.index') }}">
+                        <i class="metismenu-icon"></i>
+                        <span class="menu-title">Examinations</span>
+                    </a>
+                </li>
+                <li>
+                    <a class="mm-active" href="{{ route('user.reports.index') }}">
+                        <i class="metismenu-icon"></i>
+                        <span class="menu-title">Reports</span>
+                    </a>
                 </li>
 
 
