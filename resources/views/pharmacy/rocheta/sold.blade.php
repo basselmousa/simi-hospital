@@ -39,7 +39,7 @@
                                     <td>{{ $drug->drug->price }}</td>
                                     <td>{{ $drug->times }}</td>
                                     <td>{{ $drug->note }}</td>
-                                    <td>{{ $drug->user->full_name }}</td>
+                                    <td>{{ \Illuminate\Support\Facades\Crypt::decrypt($drug->user->full_name) }}</td>
                                     <td>{{ \Carbon\Carbon::make($drug->updated_at) }}</td>
 
                                 </tr>

@@ -37,7 +37,7 @@ class AuthenticatePharmacyController extends Controller
 
         $request->validate([
             $this->username() => 'required|string',
-            'password' => 'required|string',
+            'password' => ['required','string', ]
         ]);
         if (Auth::guard('pharmacy')->attempt(
             $request->only($this->username(), 'password'), $request->filled('remember')
@@ -73,7 +73,7 @@ class AuthenticatePharmacyController extends Controller
             'name' => 'required',
             'username' => 'required|unique:pharmacies,username',
             'email' => 'required|unique:pharmacies,email',
-            'password' => 'required|min:8|confirmed',
+            'password' =>[ 'required','min:8','confirmed','regex:/[A-Z]/', 'regex:/[0-9]/', 'regex:/[@$!%*#?&]/'],
             'address' => 'required',
             'country' => 'required|not_in:0',
             'city' => 'required|not_in:0',
@@ -81,6 +81,10 @@ class AuthenticatePharmacyController extends Controller
             'building_number' => 'required',
             'phone_number' => 'required|unique:pharmacies,phone_number|min:10|max:10',
             'logo' => 'required|mimes:jpg,jpeg,png|max:10000'
+        ],[
+            "password.regex" => "Password must contain * 1 UpperCase
+                                 * 1 Number
+                                 * 1 Special Character"
         ]);
 
         event(new Registered($user = $this->create($request)));

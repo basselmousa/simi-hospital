@@ -28,7 +28,7 @@
                     <tr>
                         <td>{{ $appoint->date }}</td>
                         <td>{{ $appoint->medicine->nurse }}</td>
-                        <td>{{ $appoint->user->full_name }}</td>
+                        <td>{{ \Illuminate\Support\Facades\Crypt::decrypt($appoint->user->full_name) }}</td>
                         <td>{{ $appoint->period }}</td>
                         <td>{{ $appoint->status }}</td>
                         <td>{{ $appoint->price ?? 'Not defined' }}</td>
@@ -42,57 +42,60 @@
                                 @method('DELETE')
                                 @csrf
                             </form>
-                           @if($appoint->status == 'pending')
+                            @if($appoint->status == 'pending')
                                 <button data-toggle="modal" data-target="#add-certificate-modal-{{$appoint->id}}"
                                         class="btn btn-primary ">
                                     <i class="fa fa-plus"></i>
                                     Accept
                                 </button>
-                            @section("modal")
-                                <div class="modal fade" id="add-certificate-modal-{{$appoint->id}}" style="display: none;" aria-hidden="true">
-                                    <div class="modal-dialog">
-                                        <div class="modal-content">
-                                            <div class="modal-header">
-                                                <h4 class="modal-title">Accept Appointment </h4>
-                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                    <span aria-hidden="true">×</span>
-                                                </button>
-                                            </div>
-                                            <div class="modal-body">
-                                                <form id="add-certificate-form-{{$appoint->id}}" action="{{ route('secretary.dashboard.appointments.home-care-accept', $appoint->id) }}"
-                                                      method="post" enctype="multipart/form-data">
-                                                    @csrf
-                                                    @method('PUT')
-
-
-                                                    <div class="form-group">
-                                                        <input type="text" name="price" class="form-control form-control"
-                                                               id="exampleInputUsername1" placeholder="Price"
-                                                               value="{{ old('price') }}">
-                                                        @error('price')
-                                                        <span class="invalid-feedback" role="alert">
+                                @push("modals")
+                                    <div class="modal fade" id="add-certificate-modal-{{$appoint->id}}"
+                                         style="display: none;" aria-hidden="true">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h4 class="modal-title">Accept Appointment </h4>
+                                                    <button type="button" class="close" data-dismiss="modal"
+                                                            aria-label="Close">
+                                                        <span aria-hidden="true">×</span>
+                                                    </button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <form id="add-certificate-form-{{$appoint->id}}"
+                                                          action="{{ route('secretary.dashboard.appointments.home-care-accept', $appoint->id) }}"
+                                                          method="post" enctype="multipart/form-data">
+                                                        @csrf
+                                                        @method('PUT')
+                                                        <div class="form-group">
+                                                            <input type="text" name="price"
+                                                                   class="form-control form-control"
+                                                                   id="exampleInputUsername1" placeholder="Price"
+                                                                   value="{{ old('price') }}">
+                                                            @error('price')
+                                                            <span class="invalid-feedback" role="alert">
                                                         <strong>{{ $message }}</strong>
                                                     </span>
-                                                        @enderror
-                                                    </div>
-
-                                                </form>
-                                            </div>
-                                            <div class="modal-footer justify-content-between">
-                                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                                                <button type="button" class="btn btn-primary"
-                                                        onclick="event.preventDefault();
+                                                            @enderror
+                                                        </div>
+                                                    </form>
+                                                </div>
+                                                <div class="modal-footer justify-content-between">
+                                                    <button type="button" class="btn btn-default" data-dismiss="modal">
+                                                        Close
+                                                    </button>
+                                                    <button type="button" class="btn btn-primary"
+                                                            onclick="event.preventDefault();
                                                             document.getElementById('add-certificate-form-{{$appoint->id}}').submit();
                                                             "
-                                                >Save changes
-                                                </button>
+                                                    >Save changes
+                                                    </button>
+                                                </div>
                                             </div>
+                                            <!-- /.modal-content -->
                                         </div>
-                                        <!-- /.modal-content -->
+                                        <!-- /.modal-dialog -->
                                     </div>
-                                    <!-- /.modal-dialog -->
-                                </div>
-                                @endsection
+                                @endpush
                             @endif
                         </td>
                     </tr>
@@ -102,7 +105,6 @@
             </table>
         </div>
     </div>
-
 
 @endsection
 

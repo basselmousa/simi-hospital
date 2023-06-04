@@ -8,12 +8,12 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form id="edit-admin-form-{{$admin->id}}" action="{{ route('dashboard.admin.admins.update',$admin->id) }}" method="post" enctype="multipart/form-data">
+                <form id="edit-admin-form-{{$admin->id}}" action="{{ route('dashboard.admin.drugs.update',$admin->id) }}" method="post" enctype="multipart/form-data">
                     @csrf
                     @method("PUT")
                     <div class="form-group">
                         <label for="exampleInputUsername1">Name</label>
-                        <input type="text" disabled value="{{ $admin->name }}" name="name" class="form-control" id="exampleInputUsername1" placeholder="Title">
+                        <input type="text" readonly value="{{ $admin->name }}" name="name" class="form-control" id="exampleInputUsername1" placeholder="Title">
                         @error('name')
                         <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>

@@ -13,7 +13,7 @@
                 <thead>
                 <tr>
                     <th>Appoint Date</th>
-                    <th>Doctor Name</th>
+                    <th>User Name</th>
 
                     <th>Appoint Time</th>
                     <th>Appoint Status</th>
@@ -26,7 +26,7 @@
                 @foreach($appoints as $appoint)
                     <tr>
                         <td>{{ $appoint->date }}</td>
-                        <td>{{ $appoint->doctor->full_name }}</td>
+                        <td>{{ \Illuminate\Support\Facades\Crypt::decrypt($appoint->user->full_name) }}</td>
 
                         <td>{{ $appoint->time }}</td>
                         <td>{{ $appoint->status }}</td>

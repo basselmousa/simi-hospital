@@ -1,5 +1,7 @@
 @extends('layouts.app')
 @section('content')
+
+    @include("helpers.alerts")
     <div class="card">
         <div class="card-header">
             <div class="row">

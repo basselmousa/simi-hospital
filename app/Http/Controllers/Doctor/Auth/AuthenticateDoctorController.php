@@ -17,6 +17,7 @@ use PhpParser\Comment\Doc;
 class AuthenticateDoctorController extends Controller
 {
     use ThrottlesLogins;
+
     public function __construct()
     {
         $this->middleware(['guest:doctor'])->except('logout');
@@ -62,6 +63,7 @@ class AuthenticateDoctorController extends Controller
         ]);
 
     }
+
     public function username()
     {
         return 'email';
@@ -75,13 +77,19 @@ class AuthenticateDoctorController extends Controller
             'fathername' => 'required',
             'familyname' => 'required',
             'email' => 'required|unique:doctors',
-            'password' => 'required|min:8|confirmed',
+            'password' => ['required','min:8','confirmed', 'regex:/[A-Z]/',      // must contain at least one uppercase letter
+                'regex:/[0-9]/',      // must contain at least one digit
+                'regex:/[@$!%*#?&]/',],
             'country' => 'required',
             'city' => 'required|not_in:0',
             'gender' => 'required|not_in:0',
             'building_number' => 'required',
             'phone_number' => 'required|unique:doctors|min:10|max:10',
             'image' => 'nullable|mimes:jpg,jpeg,png|max:10000'
+        ],[
+            "password.regex" => "Password must contain * 1 UpperCase
+                                 * 1 Number
+                                 * 1 Special Character"
         ]);
 
 
@@ -98,7 +106,7 @@ class AuthenticateDoctorController extends Controller
     private function create(Request $request)
     {
         return Doctor::create([
-            'full_name' =>$request['firstname'] . " ". $request['fathername'] . " ". $request['familyname'],
+            'full_name' => $request['firstname'] . " " . $request['fathername'] . " " . $request['familyname'],
             'email' => $request['email'],
             'password' => Hash::make($request['password']),
             'country' => $request['country'],
@@ -112,9 +120,9 @@ class AuthenticateDoctorController extends Controller
 
     private function profile_image_upload(Request $request)
     {
-        $fullname = $request['firstname'] . " ". $request['fathername'] . " ". $request['familyname'];
-        if ($request->hasFile('image')){
-           return $request->file('image')->store('doctors/'. $fullname . '/');
+        $fullname = $request['firstname'] . " " . $request['fathername'] . " " . $request['familyname'];
+        if ($request->hasFile('image')) {
+            return $request->file('image')->store('doctors/' . $fullname . '/');
         }
         return null;
     }

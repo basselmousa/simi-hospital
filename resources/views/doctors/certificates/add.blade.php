@@ -42,7 +42,7 @@
                     <div class="form-group">
                         <label for="exampleInputUsername1">Take Date</label>
                         <div id="datepicker-popup" class="input-group date datepicker">
-                            <input type="text" name="take_date" class="form-control">
+                            <input type="date" name="take_date" class="form-control">
                             <span class="input-group-addon input-group-append border-left">
                                       <span class="far fa-calendar input-group-text"></span>
                                     </span>

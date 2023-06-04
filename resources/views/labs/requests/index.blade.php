@@ -37,7 +37,7 @@
                                     <td>{{ $drug->examination->name }}</td>
                                     <td>{{ $drug->examination->price }}</td>
                                     <td>{{ $drug->doctor->full_name }}</td>
-                                    <td>{{ $drug->user->full_name }}</td>
+                                    <td>{{ \Illuminate\Support\Facades\Crypt::decrypt($drug->user->full_name) }}</td>
                                     <td>
                                         <button class="btn btn-primary" data-toggle="modal" data-target="#add-date-{{$drug->id}}">Set value</button>
                                         @push("modals")

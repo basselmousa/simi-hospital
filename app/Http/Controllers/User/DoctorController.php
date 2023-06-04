@@ -16,6 +16,7 @@ class DoctorController extends Controller
 
     public function index()
     {
+
         $doctors = Doctor::with('certifications')->paginate(15);
         $nearestDoctors = Doctor::with('certifications')->where('city', '=', auth()->user()->city)->paginate(15, '*', 'nearest');
         return view('user.doctors.index', compact('doctors', 'nearestDoctors'));
@@ -86,7 +87,7 @@ class DoctorController extends Controller
             'period' => 'required|after:date'
         ]);
 
-        $medicine->homeable()->attach($medicine->id,[
+        $medicine->homeable()->attach(auth()->id(),[
             'date' => \Illuminate\Support\Carbon::make($request->date),
             'period' => Carbon::make($request->period)->diffInDays($request->date)
         ]);

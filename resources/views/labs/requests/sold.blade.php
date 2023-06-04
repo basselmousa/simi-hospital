@@ -39,7 +39,7 @@
                                     <td>{{ $drug->examination->name }}</td>
                                     <td>{{ $drug->examination->price }}</td>
                                     <td>{{ $drug->doctor->full_name }}</td>
-                                    <td>{{ $drug->user->full_name }}</td>
+                                    <td>{{ \Illuminate\Support\Facades\Crypt::decrypt($drug->user->full_name) }}</td>
                                     <td>{{ $drug->value }}</td>
                                     <td>{{ $drug->greater_value }}</td>
                                     <td>{{ \Carbon\Carbon::make($drug->created_at) }}</td>

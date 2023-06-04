@@ -59,7 +59,10 @@ class RegisterController extends Controller
             'fathername' => ['required', 'string', 'max:255'],
             'familyname' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users,email'],
-            'password' => ['required', 'string', 'min:8', 'confirmed'],
+            'password' => ['required', 'string', 'min:8','regex:/[a-z]/',      // must contain at least one lowercase letter
+                'regex:/[A-Z]/',      // must contain at least one uppercase letter
+                'regex:/[0-9]/',      // must contain at least one digit
+                'regex:/[@$!%*#?&]/', 'confirmed'],
             'country' => 'required',
             'city' => 'required|not_in:0',
             'gender' => 'required|not_in:0',
@@ -68,6 +71,10 @@ class RegisterController extends Controller
             'image' => 'nullable|mimes:jpg,jpeg,png|max:10000',
             'company' => 'required_if:company,!=,0',
 
+        ],[
+            "password.regex" => "Password must contain * 1 UpperCase
+                                 * 1 Number
+                                 * 1 Special Character"
         ]);
     }
     public function showRegistrationForm()
@@ -101,15 +108,16 @@ class RegisterController extends Controller
      */
     protected function create( $request)
     {
+
         return User::create([
-            'full_name' => $request->firstname . " " . $request->fathername . " " . $request->familyname,
+            'full_name' =>\Illuminate\Support\Facades\Crypt::encrypt( $request->firstname . " " . $request->fathername . " " . $request->familyname),
             'email' => $request->email,
             'password' => Hash::make($request->password),
-            'country' => $request->country,
-            'city' => $request->city,
-            'gender' => $request->gender,
-            'ssn' => $request->ssn,
-            'phone_number' => $request->phone_number,
+            'country' => \Illuminate\Support\Facades\Crypt::encrypt($request->country),
+            'city' => \Illuminate\Support\Facades\Crypt::encrypt($request->city),
+            'gender' => \Illuminate\Support\Facades\Crypt::encrypt($request->gender),
+            'ssn' => \Illuminate\Support\Facades\Crypt::encrypt($request->ssn),
+            'phone_number' => \Illuminate\Support\Facades\Crypt::encrypt($request->phone_number),
             'image' => $this->upload_image($request),
         ]);
     }

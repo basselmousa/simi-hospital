@@ -91,7 +91,7 @@
                             id="exampleFormControlSelect2">
                         <option disabled selected>City</option>
                         @foreach(\App\Http\Cities::$cities as $city)
-                            <option value="{{ $city }}" {{ (old('city') ?? $user->city) == $city ? 'selected' : ''   }}>{{ $city }}</option>
+                            <option value="{{ $city }}" {{ (old('city') ?? \Illuminate\Support\Facades\Crypt::decrypt($user->city)) == $city ? 'selected' : ''   }}>{{ $city }}</option>
                         @endforeach
 
                     </select>
@@ -107,8 +107,8 @@
                     <select class="form-control form-control-lg" name="gender"
                             id="exampleFormControlSelect2">
                         <option disabled selected>Gender</option>
-                        <option value="male" {{ (old('gender') ?? $user->gender ) == 'male' ? 'selected' : '' }} >Male</option>
-                        <option value="female" {{ (old('gender') ?? $user->gender ) == 'female' ? 'selected' : '' }}>Female</option>
+                        <option value="male" {{ (old('gender') ?? \Illuminate\Support\Facades\Crypt::decrypt($user->gender) ) == 'male' ? 'selected' : '' }} >Male</option>
+                        <option value="female" {{ (old('gender') ?? \Illuminate\Support\Facades\Crypt::decrypt($user->gender) ) == 'female' ? 'selected' : '' }}>Female</option>
 
                     </select>
                     @error('gender')
@@ -122,7 +122,7 @@
                 <div class="form-group">
                     <input type="text" name="ssn" class="form-control form-control"
                            id="exampleInputEmail1"
-                           placeholder="SSN" value="{{ old('ssn') ?? $user->ssn }}">
+                           placeholder="SSN" value="{{ old('ssn') ?? \Illuminate\Support\Facades\Crypt::decrypt($user->ssn) }}">
                     @error('ssn')
                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -135,7 +135,7 @@
                 <div class="form-group">
                     <input type="text" name="phone_number" class="form-control form-control"
                            id="exampleInputEmail1"
-                           placeholder="Phone Number" value="{{ old('phone_number') ?? $user->phone_number }}">
+                           placeholder="Phone Number" value="{{ old('phone_number') ?? \Illuminate\Support\Facades\Crypt::decrypt($user->phone_number) }}">
                     @error('phone_number')
                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>

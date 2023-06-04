@@ -36,8 +36,7 @@
                     <tr>
                         <td>{{ $appoint->date }}</td>
                         <td>{{ $appoint->medicine->nurse }}</td>
-                        <td>{{ $appoint->user->full_name }}</td>
-
+                        <td>{{ \Illuminate\Support\Facades\Crypt::decrypt($appoint->user->full_name) }}</td>
                         <td>{{ $appoint->period }}</td>
                         <td>{{ $appoint->status }}</td>
                         <td>{{ $appoint->price }}</td>

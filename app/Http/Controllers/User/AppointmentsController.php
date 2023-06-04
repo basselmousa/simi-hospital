@@ -66,9 +66,11 @@ class AppointmentsController extends Controller
 //            $query->select('id' , auth('secretary')->user()->doctor_id);
 //            }
         ])->whereHas('user', function ($query) {
-            $query->where('id', auth()->id());
+            $query->where('users.id', auth("web")->id());
         }, '=')->get();
 
+
+//        dd($appoints);
 //        dd($appoints);
         return view('user.appointments.home-care', compact('appoints'));
     }

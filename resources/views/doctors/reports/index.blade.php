@@ -22,7 +22,8 @@
 
                 @foreach($reports as $report)
                     <tr>
-                        <td>{{ $report->user->full_name }}</td>
+                        
+                        <td>{{ \Illuminate\Support\Facades\Crypt::decrypt($report->user->full_name) }}</td>
                         <td>{{ $report->recommendation }}</td>
                         <td>{{ $report->prescription }}</td>
 

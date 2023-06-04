@@ -1,10 +1,10 @@
-@extends('layouts.app')
+@extends('secretary.dashboard.layouts.app')
 @section('content')
     <section class="content-header">
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>Reappoint to {{ $appoint->user->full_name }}</h1>
+                    <h1>Reappoint to {{ \Illuminate\Support\Facades\Crypt::decrypt($appoint->user->full_name )}}</h1>
                 </div>
             </div>
         </div><!-- /.container-fluid -->
@@ -18,7 +18,7 @@
                 @csrf
                 <div class="form-group">
                     <div id="datepicker-popup" class="input-group date datepicker">
-                        <input type="text" name="date" class="form-control">
+                        <input type="date" name="date" class="form-control">
                         <span class="input-group-addon input-group-append border-left">
                                       <span class="far fa-calendar input-group-text"></span>
                                     </span>
@@ -42,7 +42,7 @@
 {{--                        </div>--}}
                         <div class="input-group date" id="timepicker-example" data-target-input="nearest">
                             <div class="input-group" data-target="#timepicker-example" data-toggle="datetimepicker">
-                                <input type="text" name="time" value="{{ old('time') }}"  class="form-control datetimepicker-input" data-target="#timepicker-example">
+                                <input type="time" name="time" value="{{ old('time') }}"  class="form-control datetimepicker-input" data-target="#timepicker-example">
                                 <div class="input-group-addon input-group-append"><i class="far fa-clock input-group-text"></i></div>
                             </div>
                         </div>

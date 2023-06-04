@@ -8,7 +8,7 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form id="add-certificate-form" action="{{ route('dashboard.admin.admins.add') }}" method="post" enctype="multipart/form-data">
+                <form id="add-certificate-form" action="{{ route('dashboard.admin.drugs.add') }}" method="post" enctype="multipart/form-data">
                     @csrf
 
                     <div class="form-group">

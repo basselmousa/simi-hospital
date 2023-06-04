@@ -81,6 +81,7 @@
 @yield('js')
 @yield("modal-view")
 @yield("modal")
+@stack("modals")
 </body>
 
 

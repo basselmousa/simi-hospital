@@ -73,7 +73,7 @@ class AuithenticateLabsController extends Controller
             'name' => 'required',
             'username' => 'required|unique:medical_labs,username',
             'email' => 'required|unique:medical_labs,email',
-            'password' => 'required|min:8|confirmed',
+            'password' => ['required','min:8','confirmed','regex:/[A-Z]/','regex:/[0-9]/','regex:/[@$!%*#?&]/'],
             'address' => 'required',
             'country' => 'required|not_in:0',
             'city' => 'required|not_in:0',
@@ -81,6 +81,10 @@ class AuithenticateLabsController extends Controller
             'building_number' => 'required',
 //            'phone_number' => 'required|unique:medical_labs,phone_number|min:10|max:10',
             'logo' => 'required|mimes:jpg,jpeg,png|max:10000'
+        ],[
+            "password.regex" => "Password must contain * 1 UpperCase
+                                 * 1 Number
+                                 * 1 Special Character"
         ]);
 
         event(new Registered($user = $this->create($request)));

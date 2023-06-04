@@ -50,7 +50,7 @@
                                 <a data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
                                    class="p-0 btn">
                                     <img width="42" class="rounded-circle"
-                                         src="{{asset(isset(auth("web")->user()->image)? "storage".auth("doctor")->user()->image :  "admin/assets/images/avatars/1.jpg")}}"
+                                         src="{{asset(isset(auth("web")->user()->image)? "storage/".auth("web")->user()->image :  "admin/assets/images/avatars/1.jpg")}}"
                                          alt="">
                                     <i class="fa fa-angle-down ml-2 opacity-8"></i>
                                 </a>
@@ -69,7 +69,7 @@
                                                         </div>
                                                         <div class="widget-content-left">
                                                             <div
-                                                                class="widget-heading">{{ auth("web")->user()->full_name }}</div>
+                                                                class="widget-heading">{{ \Illuminate\Support\Facades\Crypt::decrypt(auth("web")->user()->full_name) }}</div>
                                                             <div class="widget-subheading opacity-8">
                                                                 {{--                                                                Discription--}}
                                                             </div>

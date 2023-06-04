@@ -14,8 +14,8 @@ class ProfileController extends Controller
 
 
         $user = auth()->user();
-        $names = explode(' ', $user->full_name);
-
+        $names = explode(' ', \Illuminate\Support\Facades\Crypt::decrypt($user->full_name));
+//dd(\Illuminate\Support\Facades\Crypt::decrypt($user->city));
         return view('user.profile',compact('user', 'names'));
     }
 
@@ -54,14 +54,14 @@ class ProfileController extends Controller
     private function update_doctor(Request $request)
     {
         return auth()->user()->update([
-            'full_name' => $request['firstname'] . " " . $request['fathername'] . " " . $request['familyname'],
+            'full_name' => \Illuminate\Support\Facades\Crypt::encrypt($request['firstname'] . " " . $request['fathername'] . " " . $request['familyname']),
             'email' => $request['email'],
             'password' => $request['password'],
-            'country' => $request['country'],
-            'city' => $request['city'],
-            'gender' => $request['gender'],
-            'ssn' => $request['ssn'],
-            'phone_number' => $request['phone_number'],
+            'country' => \Illuminate\Support\Facades\Crypt::encrypt($request['country']),
+            'city' => \Illuminate\Support\Facades\Crypt::encrypt($request['city']),
+            'gender' => \Illuminate\Support\Facades\Crypt::encrypt($request['gender']),
+            'ssn' => \Illuminate\Support\Facades\Crypt::encrypt($request['ssn']),
+            'phone_number' =>\Illuminate\Support\Facades\Crypt::encrypt( $request['phone_number']),
             'image' => $request->hasFile('image') ? $this->profile_image_update($request) : auth()->user()->image,
         ]);
     }

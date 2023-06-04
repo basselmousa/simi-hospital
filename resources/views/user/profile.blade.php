@@ -25,7 +25,7 @@
                     <div class="row">
                         <div class="col-lg-4">
                             <div class="border-bottom text-center pb-4">
-                                <img src="{{ asset('storage/'.$user->image) }}" alt="profile"
+                                <img src="{{ asset('storage/'.$user->image) }}" width="150px" height="150px" alt="profile"
                                      class="img-lg rounded-circle mb-3"/>
 
                             </div>
@@ -37,7 +37,7 @@
                             Phone Number
                           </span>
                                     <span class="float-right text-muted">
-                            {{ $user->phone_number }}
+                            {{ \Illuminate\Support\Facades\Crypt::decrypt($user->phone_number) }}
                           </span>
                                 </p>
 
@@ -54,7 +54,7 @@
                               SSN
                           </span>
                                     <span class="float-right text-muted">
-                            {{ $user->ssn }}
+                            {{ \Illuminate\Support\Facades\Crypt::decrypt($user->ssn) }}
                           </span>
                                 </p>
                                 <p class="clearfix">
@@ -62,7 +62,7 @@
                             Country
                           </span>
                                     <span class="float-right text-muted">
-                            {{ $user->country }}
+                            {{ \Illuminate\Support\Facades\Crypt::decrypt($user->country) }}
                           </span>
                                 </p>
                                 <p class="clearfix">
@@ -70,7 +70,7 @@
                             City
                           </span>
                                     <span class="float-right text-muted">
-                            {{ $user->city }}
+                            {{ \Illuminate\Support\Facades\Crypt::decrypt($user->city) }}
                           </span>
                                 </p>
                             </div>

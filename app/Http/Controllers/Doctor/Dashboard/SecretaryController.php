@@ -23,7 +23,9 @@ class SecretaryController extends Controller
         $request->validate([
             'name' => 'required',
             'email' => 'required|unique:secretaries',
-            'password' => 'required|min:8'
+            'password' => ['required','min:8', 'regex:/[A-Z]/',      // must contain at least one uppercase letter
+                'regex:/[0-9]/',      // must contain at least one digit
+                'regex:/[@$!%*#?&]/',]
         ]);
 
         auth('doctor')->user()->secretary()->create([

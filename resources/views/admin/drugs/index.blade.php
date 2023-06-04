@@ -40,14 +40,14 @@
                                         <button class="btn btn-primary" data-toggle="modal"
                                                 data-target="#edit-admin-{{$drug->id}}">Edit
                                         </button>
-                                        @section("modal-view")
+                                        @push("modals")
                                             @include("admin.drugs.edit",["admin" => $drug])
-                                        @endsection
+                                        @endpush
                                         <button class="btn btn-danger rounded-circle" onclick="event.preventDefault();
                                             document.getElementById('delete-appoint-form-{{$drug->id}}').submit();
                                             "><i class="fa fa-trash"></i></button>
                                         <form id="delete-appoint-form-{{$drug->id}}" method="post"
-                                              action="{{ route('dashboard.admin.admins.delete', $drug->id) }}"
+                                              action="{{ route('dashboard.admin.drugs.delete', $drug->id) }}"
                                               class="d-none">
                                             @method('DELETE')
                                             @csrf
