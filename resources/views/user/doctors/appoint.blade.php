@@ -59,7 +59,7 @@
                     <!-- /.form group -->
                 </div>
                 <div class="form-group">
-                    <select name="type" class="custom-select">
+                    <select name="type" class="custom-select" id="type" onchange="changeHelpText()">
                         <option  selected disabled="">Select Appoint Type</option>
 
                         @foreach($types as $type)
@@ -74,11 +74,38 @@
                                     </span>
                     @enderror
                 </div>
+                <span id="home" style="visibility: hidden" class="text-warning " role="alert">
+                    Available Days For Home Appointments ({{ $homeDays }})
+                </span>
+                <br>
 
+                <span  id="clinic" class="text-warning " style="visibility: hidden" role="alert">
+                    Available Days For Clinic Appointments ({{ $clinicDays }})
+                </span>
+                <br>
                 <button type="submit" class="btn btn-primary">Save</button>
 
             </form>
 
         </div>
     </section>
+@endsection
+
+@section("js")
+    <script>
+        function changeHelpText(){
+             const value = document.getElementById("type").value;
+            console.log('vals : ' +value)
+            console.log('idn : ' +(value==='Home'))
+
+            if (value === 'Clinic'){
+                document.getElementById("clinic").style.visibility = 'visible';
+                document.getElementById("home").style.visibility = 'hidden';
+            }else if(value === 'Home'){
+
+                document.getElementById("clinic").style.visibility = 'hidden';
+                document.getElementById("home").style.visibility = 'visible';
+            }
+        }
+    </script>
 @endsection

@@ -77,18 +77,19 @@ class AuthenticateDoctorController extends Controller
             'fathername' => 'required',
             'familyname' => 'required',
             'email' => 'required|unique:doctors',
-            'password' => ['required','min:8','confirmed', 'regex:/[A-Z]/',      // must contain at least one uppercase letter
+            'password' => ['required','min:16','confirmed', 'regex:/[A-Z]/',      // must contain at least one uppercase letter
                 'regex:/[0-9]/',      // must contain at least one digit
                 'regex:/[@$!%*#?&]/',],
             'country' => 'required',
             'city' => 'required|not_in:0',
             'gender' => 'required|not_in:0',
-            'building_number' => 'required',
-            'phone_number' => 'required|unique:doctors|min:10|max:10',
+            'building_number' => 'required|numeric|min:3|max:6',
+            'phone_number' => 'required|unique:doctors|min:14|max:14|numeric',
             'image' => 'nullable|mimes:jpg,jpeg,png|max:10000'
         ],[
             "password.regex" => "Password must contain * 1 UpperCase
                                  * 1 Number
+                                 * at least 1 lowercase
                                  * 1 Special Character"
         ]);
 

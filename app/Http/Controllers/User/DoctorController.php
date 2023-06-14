@@ -25,8 +25,13 @@ class DoctorController extends Controller
     public function show_appoint(Request $request, Doctor $doctor)
     {
         $types = $doctor->dates()->distinct()->get(['type']);
+        $homeDays = $doctor->dates()->distinct()->where("type",'=','Home')->pluck("day")->toArray();
+        $clinicDays = $doctor->dates()->distinct()->where("type",'=','Clinic')->pluck("day")->toArray();
 
-        return view('user.doctors.appoint', compact('doctor', 'types'));
+        $homeDays = implode(",",$homeDays);
+        $clinicDays = implode(",",$clinicDays);
+
+        return view('user.doctors.appoint', compact('doctor', 'types','homeDays','clinicDays'));
     }
 
     public function appoint(Request $request, Doctor $doctor)

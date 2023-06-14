@@ -56,8 +56,9 @@
                                     </span>
                                 @enderror
                             </div>
+
                             <div class="mt-3">
-                                <button type="submit" class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn" >SIGN IN</button>
+                                <button type="submit" class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn">SIGN IN</button>
                             </div>
 
 

@@ -11072,8 +11072,9 @@ a, button, .btn {
 
 .app-header__logo .logo-src {
     height: 23px;
-    width: 97px;
-    background: url('../images/logo.png')
+    width: 180px;
+    background: url('../images/logo.png');
+    background-repeat: no-repeat;
 }
 
 .app-header__menu, .app-header__mobile-menu {
@@ -11732,7 +11733,8 @@ a, button, .btn {
 
 .fixed-sidebar .app-sidebar {
     position: fixed;
-    height: 100vh
+    height: 100vh;
+    width: 310px;
 }
 
 .fixed-sidebar .app-main .app-main__outer {

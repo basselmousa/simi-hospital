@@ -15,10 +15,8 @@ use Illuminate\Support\Facades\Route;
 //dd(auth('doctor')->user());
 Route::get('/', [\App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get("/ss" , function(){
-    $str = "0789033348" ;
-    dump($stre = \Illuminate\Support\Facades\Crypt::encrypt($str));
-    dump(strlen($stre));
-    dump(\Illuminate\Support\Facades\Crypt::decrypt($stre));
+
+    dd(\Illuminate\Support\Facades\Hash::make("U@s0er123456789"));
 });
 
 Auth::routes();
